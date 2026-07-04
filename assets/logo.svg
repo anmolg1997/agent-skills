@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 240" width="860" height="240" role="img" aria-label="agent-skills: incident and failure intelligence for AI coding agents">
+  <defs>
+    <linearGradient id="signal" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6366F1"/>
+      <stop offset="0.55" stop-color="#8B5CF6"/>
+      <stop offset="0.72" stop-color="#F59E0B"/>
+      <stop offset="1" stop-color="#F43F5E"/>
+    </linearGradient>
+    <linearGradient id="word" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F4F6FB"/>
+      <stop offset="1" stop-color="#C7CEDB"/>
+    </linearGradient>
+    <pattern id="grid" width="26" height="26" patternUnits="userSpaceOnUse">
+      <path d="M26 0H0V26" fill="none" stroke="#1B2230" stroke-width="1"/>
+    </pattern>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect x="1" y="1" width="858" height="238" rx="28" fill="#0D1117" stroke="#232B36" stroke-width="2"/>
+  <rect x="2" y="2" width="856" height="236" rx="27" fill="url(#grid)" opacity="0.5"/>
+
+  <!-- mark: telemetry chip, healthy pulse then flatline (the incident) -->
+  <g transform="translate(48,56)">
+    <rect x="0" y="0" width="128" height="128" rx="26" fill="#0B0E14" stroke="#2A3342" stroke-width="2"/>
+    <g stroke="#151B26" stroke-width="1">
+      <line x1="20" y1="64" x2="108" y2="64"/>
+      <line x1="64" y1="20" x2="64" y2="108"/>
+    </g>
+    <path d="M16 74 L34 74 L42 50 L52 92 L60 40 L70 74 L82 74 L92 108 L112 108"
+          fill="none" stroke="url(#signal)" stroke-width="5.5"
+          stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+    <circle cx="92" cy="108" r="6.5" fill="#0B0E14" stroke="#F43F5E" stroke-width="3.5"/>
+    <circle cx="92" cy="108" r="15" fill="none" stroke="#F43F5E" stroke-width="1.5" opacity="0.55"/>
+  </g>
+
+  <!-- wordmark -->
+  <g transform="translate(216,0)">
+    <text x="0" y="106" font-family="ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, monospace"
+          font-size="58" font-weight="700" letter-spacing="-1" fill="url(#word)">agent<tspan fill="#8B5CF6">-</tspan>skills</text>
+    <text x="2" y="146" font-family="ui-sans-serif, -apple-system, 'Segoe UI', Roboto, sans-serif"
+          font-size="23" font-weight="500" fill="#AEB7C6">Incident &amp; failure intelligence for AI coding agents</text>
+
+    <!-- stat chips -->
+    <g font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="14" font-weight="600">
+      <g transform="translate(2,168)">
+        <rect x="0" y="0" width="168" height="30" rx="8" fill="#151B26" stroke="#2A3342"/>
+        <circle cx="16" cy="15" r="4" fill="#8B5CF6"/>
+        <text x="28" y="20" fill="#D7DEEA">261 postmortems</text>
+      </g>
+      <g transform="translate(180,168)">
+        <rect x="0" y="0" width="150" height="30" rx="8" fill="#151B26" stroke="#2A3342"/>
+        <circle cx="16" cy="15" r="4" fill="#F59E0B"/>
+        <text x="28" y="20" fill="#D7DEEA">12 AI classes</text>
+      </g>
+      <g transform="translate(342,168)">
+        <rect x="0" y="0" width="92" height="30" rx="8" fill="#151B26" stroke="#2A3342"/>
+        <circle cx="16" cy="15" r="4" fill="#22C55E"/>
+        <text x="28" y="20" fill="#D7DEEA">0 deps</text>
+      </g>
+    </g>
+  </g>
+</svg>
