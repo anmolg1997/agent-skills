@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""pm.py, CLI over the danluu/post-mortems enriched index.
+"""pm.py, CLI over the enriched incident-postmortem index.
 
 Subcommands:
   search   keyword/tag search over the index

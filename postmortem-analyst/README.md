@@ -1,10 +1,10 @@
 # postmortem-analyst
 
-An [Agent Skill](https://agentskills.io) for Claude Code that turns [danluu/post-mortems](https://github.com/danluu/post-mortems): the community-curated list of real-world incident postmortems, into a searchable, tagged, agentically-analyzable corpus.
+An [Agent Skill](https://agentskills.io) for Claude Code: an incident-analysis engine that turns a body of real-world postmortems into a searchable, tagged corpus and drives it with nested agentic workflows for precedent lookup, pre-mortems, and postmortem review.
 
 ## What it does
 
-- **261 incidents indexed**: the danluu/post-mortems corpus (243: Google, AWS, Cloudflare, GitHub, GitLab, Facebook, NASA, …) plus all AWS Post-Event Summaries (18): each tagged with root-cause class (16-term controlled vocabulary), trigger, blast radius, and a one-sentence transferable lesson.
+- **261 incidents indexed and tagged** (Google, AWS, Cloudflare, GitHub, GitLab, Facebook, NASA, and more), each carrying our own root-cause class (16-term controlled vocabulary), trigger, blast radius, and a one-sentence transferable lesson.
 - **Link-health checked**: 233/243 sources reachable; entries whose pages died carry archive.org fallbacks, and the fetcher resolves live original → archived snapshot → Wayback API automatically.
 - **32 canonical failure patterns** distilled per category in `references/taxonomy.md` (e.g. *"the HA machinery causes the outage"*, *"backup power fails at the moment of truth"*, *"leap second violates monotonic-time assumptions"*).
 - **Nested agentic workflows** (defined in `SKILL.md`): from instant index lookups (L0), to incident-similarity deep dives that fan out one reader agent per matched postmortem (L1), to category surveys where each survey agent internally runs its own reader loop (L2), to corpus-wide studies (L3).
@@ -31,7 +31,7 @@ python3 scripts/pm.py search leap second
 python3 scripts/pm.py show cloudflare-10
 python3 scripts/pm.py fetch gitlab-2 --out /tmp/pm.txt   # full postmortem text, Wayback fallback
 python3 scripts/pm.py stats
-python3 scripts/pm.py refresh   # re-sync with upstream danluu/post-mortems, preserving tags
+python3 scripts/pm.py refresh   # re-sync the seed incident list, preserving our tags
 ```
 
 ## Example prompts once installed
@@ -52,6 +52,10 @@ references/taxonomy.md   # controlled vocabularies + cross-category pattern cata
 scripts/pm.py            # search / show / fetch / stats / refresh
 ```
 
-## Attribution
+## Our IP
 
-Incident list and summaries derive from [danluu/post-mortems](https://github.com/danluu/post-mortems) (thank you to Dan Luu and its many contributors). Tags, lessons, canonical patterns, link-health data, and tooling are original to this repo. Each entry links to the original postmortem, whose content belongs to its publisher.
+The analysis engine and everything that makes this useful are original work: the failure taxonomy and controlled vocabularies, every root-cause/blast-radius tag and transferable lesson, the 32 canonical failure patterns, the link-health and archive-fallback data, the tooling (`pm.py`), and all nested and methodology-driven workflows.
+
+## Data provenance
+
+The seed incident list (which incidents, and the links to each original postmortem) is drawn from the public [danluu/post-mortems](https://github.com/danluu/post-mortems) index and expanded with the AWS Post-Event Summaries. Each entry links to its original postmortem, whose content belongs to its publisher.
