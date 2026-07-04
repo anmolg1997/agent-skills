@@ -4,10 +4,12 @@ An [Agent Skill](https://agentskills.io) for Claude Code that turns [danluu/post
 
 ## What it does
 
-- **243 incidents indexed** (Google, AWS, Cloudflare, GitHub, GitLab, Facebook, NASA, …) in `data/postmortems.json`, each tagged with root-cause class (16-term controlled vocabulary), trigger, blast radius, and a one-sentence transferable lesson.
+- **261 incidents indexed** — the danluu/post-mortems corpus (243: Google, AWS, Cloudflare, GitHub, GitLab, Facebook, NASA, …) plus all AWS Post-Event Summaries (18) — each tagged with root-cause class (16-term controlled vocabulary), trigger, blast radius, and a one-sentence transferable lesson.
 - **Link-health checked**: 233/243 sources reachable; entries whose pages died carry archive.org fallbacks, and the fetcher resolves live original → archived snapshot → Wayback API automatically.
 - **32 canonical failure patterns** distilled per category in `references/taxonomy.md` (e.g. *"the HA machinery causes the outage"*, *"backup power fails at the moment of truth"*, *"leap second violates monotonic-time assumptions"*).
-- **Nested agentic workflows** (defined in `SKILL.md`): from instant index lookups (L0), to incident-similarity deep dives that fan out one reader agent per matched postmortem (L1), to category surveys where each survey agent internally runs its own reader loop (L2), to corpus-wide studies (L3). Plus a postmortem review/writing workflow that uses the corpus as an evidence-backed rubric.
+- **Nested agentic workflows** (defined in `SKILL.md`): from instant index lookups (L0), to incident-similarity deep dives that fan out one reader agent per matched postmortem (L1), to category surveys where each survey agent internally runs its own reader loop (L2), to corpus-wide studies (L3).
+- **Methodology-driven analysis workflows** no incident tool serves: **pre-mortem/FMEA** for a risky change (Klein prospective hindsight + failure-mode table, every mode grounded in corpus precedent), **rubric-based postmortem review** (8 dimensions: blameless language, mechanism chain vs single root cause, hindsight bias, detection/response analysis, action-item quality, luck accounting, impact honesty), **postmortem writing** per the Google SRE / Howie / Etsy / Cook canon (`references/methodology.md`), and **cross-incident pattern analysis** over your own org's postmortem directory.
+- **Vetted source catalog** (`references/sources.md`): where more postmortems live (the VOID, Azure PIRs, Cloudflare/GitHub feeds, Wikimedia) with freshness and machine-readability notes.
 
 ## Install
 
@@ -37,6 +39,8 @@ python3 scripts/pm.py refresh   # re-sync with upstream danluu/post-mortems, pre
 - *"We just had an outage where a config rollout removed a safety limit — what precedent exists and what should our remediation checklist contain?"*
 - *"What do all the database postmortems teach about failover?"*
 - *"Review this draft postmortem against how the best incident reports are written."*
+- *"We're planning this database migration next week — run a pre-mortem on the plan."*
+- *"Here's a folder of our last 15 postmortems — what keeps biting us?"*
 
 ## Layout
 

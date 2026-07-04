@@ -1,0 +1,361 @@
+{
+  "description": "Additional corpora beyond the danluu index; merged into search by pm.py. Never touched by `pm.py refresh`.",
+  "categories": [
+    {
+      "name": "AWS Post-Event Summaries",
+      "slug": "aws-post-event-summaries",
+      "source": "https://aws.amazon.com/premiumsupport/technology/pes/",
+      "count": 18,
+      "entries": [
+        {
+          "id": "aws-pes-2025-10-dynamodb-us-east-1",
+          "org": "Amazon",
+          "url": "https://aws.amazon.com/message/101925/",
+          "archived": false,
+          "summary": "[2025-10-19 | Amazon DynamoDB (US-EAST-1)] A latent race condition in DynamoDB's automated DNS management let a delayed DNS Enactor apply a stale plan over a newer one, after which the cleanup process deleted the plan in use, removing all IP addresses for the regional DynamoDB endpoint and wedging the DNS automation. The endpoint failure cascaded region-wide: EC2 launches failed as DropletWorkflow Manager leases timed out, NLB health checks degraded, and Lambda and IAM-dependent auth paths erred. Impact ran roughly 15 hours with lingering backlogs but no data loss.",
+          "alive": true,
+          "http_status": "200",
+          "root_cause_class": [
+            "software-bug",
+            "dns-bgp",
+            "cascading-failure"
+          ],
+          "blast_radius": [
+            "regional-outage",
+            "prolonged-recovery"
+          ],
+          "trigger": "DNS Enactor race deleted all regional endpoint records",
+          "lesson": "Automation that can delete last-known-good state needs staleness checks and a guardrail that refuses to converge to an empty answer."
+        },
+        {
+          "id": "aws-pes-2024-07-kinesis-us-east-1",
+          "org": "Amazon",
+          "url": "https://aws.amazon.com/message/073024/",
+          "archived": false,
+          "summary": "[2024-07-30 | Amazon Kinesis Data Streams (US-EAST-1)] A routine deployment in an internal Kinesis cell coincided with an unusually high count of low-throughput shards; the cell management system's status messages became oversized and delayed, so healthy hosts were misjudged unhealthy and shards were redistributed excessively. The redistribution churn overloaded the component that provisions secure connections, impairing traffic processing for about 7 hours and delaying dependents such as CloudWatch Logs, Lambda, ECS, S3 events, Firehose, Redshift, and Glue. No data was lost, but backlog drain extended into the next day.",
+          "alive": true,
+          "http_status": "200",
+          "root_cause_class": [
+            "deploy-process",
+            "capacity-overload",
+            "cascading-failure"
+          ],
+          "blast_radius": [
+            "partial-degradation",
+            "prolonged-recovery"
+          ],
+          "trigger": "deployment amid skewed shard distribution inflated health-status messages",
+          "lesson": "Health-checking that depends on timely control messages will misdiagnose healthy hosts under load and can itself become the amplifier."
+        },
+        {
+          "id": "aws-pes-2023-06-lambda-us-east-1",
+          "org": "Amazon",
+          "url": "https://aws.amazon.com/message/061323/",
+          "archived": false,
+          "summary": "[2023-06-13 | AWS Lambda (US-EAST-1)] The Lambda frontend fleet in one cell scaled past a previously untested size threshold, exposing a latent defect in which execution environments were successfully allocated for incoming requests but never actually utilized, so invocations failed. Synchronous invokes erred for about 1 hour 48 minutes, with async backlogs clearing roughly two hours later; dependents including STS, the AWS Console, EKS, EventBridge, and Connect were affected. No data loss occurred.",
+          "alive": true,
+          "http_status": "200",
+          "root_cause_class": [
+            "software-bug",
+            "capacity-overload"
+          ],
+          "blast_radius": [
+            "partial-degradation"
+          ],
+          "trigger": "fleet scaled beyond an untested capacity threshold",
+          "lesson": "Systems have implicit scale ceilings; test beyond current fleet size or the next organic growth step becomes the test in production."
+        },
+        {
+          "id": "aws-pes-2021-12-us-east-1-internal-network",
+          "org": "Amazon",
+          "url": "https://aws.amazon.com/message/12721/",
+          "archived": false,
+          "summary": "[2021-12-07 | Multiple AWS services / internal network (US-EAST-1)] An automated scaling activity triggered unexpected behavior from a large number of clients on AWS's internal network, congesting the devices bridging the internal and main networks. The congestion took down internal control planes and monitoring: EC2 launch APIs, Route 53 APIs, API Gateway, STS, Fargate, and even AWS's own support tooling degraded for roughly 7 hours, with operators partially blinded because observability rode the same congested path. No customer data was lost, though CloudWatch metrics have gaps.",
+          "alive": true,
+          "http_status": "200",
+          "root_cause_class": [
+            "automation-gone-wrong",
+            "network",
+            "cascading-failure"
+          ],
+          "blast_radius": [
+            "regional-outage",
+            "prolonged-recovery"
+          ],
+          "trigger": "automated scaling provoked a client retry storm on internal network crossover devices",
+          "lesson": "Keep monitoring and operator tooling off the failure domain they observe, or an incident will also disable your ability to diagnose it."
+        },
+        {
+          "id": "aws-pes-2021-09-direct-connect-tokyo",
+          "org": "Amazon",
+          "url": "https://aws.amazon.com/message/17908/",
+          "archived": false,
+          "summary": "[2021-09-02 | AWS Direct Connect (AP-NORTHEAST-1)] A latent defect in the operating system of network devices in the Direct Connect layer was triggered when customer traffic contained packets with a very specific, uncommon signature, interacting badly with a failover-optimization protocol deployed months earlier. The result was elevated packet loss and congestion on Direct Connect paths into the Tokyo region for about 6 hours; internet and VPN connectivity and other regions were unaffected, and no data was lost.",
+          "alive": true,
+          "http_status": "200",
+          "root_cause_class": [
+            "software-bug",
+            "network"
+          ],
+          "blast_radius": [
+            "partial-degradation"
+          ],
+          "trigger": "specific packet signature hit a latent network-OS defect",
+          "lesson": "New network protocols carry latent input-dependent bugs for months; keep an alternate connectivity path customers can fail over to."
+        },
+        {
+          "id": "aws-pes-2020-11-kinesis-us-east-1",
+          "org": "Amazon",
+          "url": "https://aws.amazon.com/message/11201/",
+          "archived": false,
+          "summary": "[2020-11-25 | Amazon Kinesis (US-EAST-1)] Adding capacity to the Kinesis front-end fleet pushed every server past the operating system's maximum thread count, because each front-end server maintains one thread per peer for the shard-map cache. With threads exhausted, servers could not build their caches or route/authenticate requests, and the failure cascaded into Cognito, CloudWatch, Lambda, EventBridge, ECS, and EKS. Recovery took ~17 hours because front-end servers had to be restarted in small batches to avoid re-triggering contention; no data was lost.",
+          "alive": true,
+          "http_status": "200",
+          "root_cause_class": [
+            "capacity-overload",
+            "config-change",
+            "cascading-failure"
+          ],
+          "blast_radius": [
+            "regional-outage",
+            "prolonged-recovery"
+          ],
+          "trigger": "capacity addition exceeded per-host OS thread limit",
+          "lesson": "All-to-all peer designs scale a hidden per-host resource with fleet size; know the OS limit you will hit before the fleet grows into it."
+        },
+        {
+          "id": "aws-pes-2019-08-ec2-ebs-tokyo",
+          "org": "Amazon",
+          "url": "https://aws.amazon.com/message/56489/",
+          "archived": false,
+          "summary": "[2019-08-23 | Amazon EC2 and Amazon EBS (AP-NORTHEAST-1)] During a datacenter cooling failover, a bug in third-party control-system logic caused excessive interactions with datacenter devices, hanging the control system; primary cooling never entered maximum mode, the backup purge mode failed, and the PLCs driving air handlers went unresponsive. Servers in part of a single Tokyo Availability Zone overheated and powered down, impairing EC2 instances and EBS volumes for several hours until operators took manual control of cooling; some hosts were damaged and retired.",
+          "alive": true,
+          "http_status": "200",
+          "root_cause_class": [
+            "software-bug",
+            "dependency-failure",
+            "hardware-failure"
+          ],
+          "blast_radius": [
+            "partial-degradation"
+          ],
+          "trigger": "cooling control-system bug hung during failover",
+          "lesson": "Facility automation is software too; drill the manual fallback because a hung controller disables every automated safety mode at once."
+        },
+        {
+          "id": "aws-pes-2018-11-ec2-dns-seoul",
+          "org": "Amazon",
+          "url": "https://aws.amazon.com/message/74876-2/",
+          "archived": false,
+          "summary": "[2018-11-22 | Amazon EC2 DNS resolvers (AP-NORTHEAST-2)] A configuration update to the EC2 DNS resolver fleet in Seoul inadvertently removed the minimum-healthy-hosts setting, which the system then interpreted as a very low default, shrinking resolver capacity far below demand. DNS queries from EC2 instances in the region failed for about 84 minutes; external DNS and raw network connectivity kept working, and no data was lost.",
+          "alive": true,
+          "http_status": "200",
+          "root_cause_class": [
+            "config-change",
+            "dns-bgp"
+          ],
+          "blast_radius": [
+            "regional-outage"
+          ],
+          "trigger": "config update deleted minimum-healthy-hosts setting",
+          "lesson": "A removed setting silently becomes its default; validate that safety-critical config keys exist, not just that the file parses."
+        },
+        {
+          "id": "aws-pes-2017-02-s3-us-east-1",
+          "org": "Amazon",
+          "url": "https://aws.amazon.com/message/41926/",
+          "archived": false,
+          "summary": "[2017-02-28 | Amazon S3 (US-EAST-1)] An operator debugging S3 billing ran an established capacity-removal playbook with a mistyped parameter, removing far more index and placement subsystem servers than intended; the tool allowed too much capacity to be removed too quickly. Both subsystems required full restarts — untested at that scale in years — leaving S3 APIs down in US-EAST-1 for about 4.3 hours and breaking dependents such as new EC2 launches, EBS snapshots, and Lambda; even the AWS status page depended on S3. No data was lost.",
+          "alive": true,
+          "http_status": "200",
+          "root_cause_class": [
+            "human-operational-error",
+            "process-gap",
+            "cascading-failure"
+          ],
+          "blast_radius": [
+            "regional-outage"
+          ],
+          "trigger": "typo in a capacity-removal command",
+          "lesson": "Operational tools must enforce rate limits and minimum-capacity floors so a single mistyped argument cannot remove the service's foundation."
+        },
+        {
+          "id": "aws-pes-2016-06-sydney",
+          "org": "Amazon",
+          "url": "https://aws.amazon.com/message/4372T8/",
+          "archived": false,
+          "summary": "[2016-06-04 | Amazon EC2 and Amazon EBS (Sydney / AP-SOUTHEAST-2)] A severe storm caused an unusually long voltage sag at the utility substation; breakers failed to isolate the DRUPS units from the degraded grid quickly enough, so the flywheel energy reserves drained into the grid instead of carrying the load until generators started. A single Availability Zone lost power for about 81 minutes, and fewer than 0.01% of EBS volumes were permanently lost where all replicas' drives failed on the abrupt power-down.",
+          "alive": true,
+          "http_status": "200",
+          "root_cause_class": [
+            "hardware-failure",
+            "cascading-failure"
+          ],
+          "blast_radius": [
+            "partial-degradation",
+            "data-loss"
+          ],
+          "trigger": "long voltage sag drained DRUPS reserves into the failing grid",
+          "lesson": "Power-redundancy gear has failure modes tied to the exact shape of the grid fault; test isolation behavior against sags, not just clean cuts."
+        },
+        {
+          "id": "aws-pes-2015-09-dynamodb-us-east",
+          "org": "Amazon",
+          "url": "https://aws.amazon.com/message/5467D2/",
+          "archived": false,
+          "summary": "[2015-09-20 | Amazon DynamoDB (US-East)] A brief network disruption made storage servers simultaneously renew their partition-membership with DynamoDB's metadata service, which had quietly grown capacity-constrained because Global Secondary Index adoption had inflated membership list sizes toward the processing time limit. Renewals timed out, servers marked themselves unavailable and retried in a storm, driving error rates to ~55%; recovery required pausing metadata requests and adding capacity over ~5 hours, with knock-on impact to SQS, Auto Scaling, CloudWatch, and the Console. No data was lost.",
+          "alive": true,
+          "http_status": "200",
+          "root_cause_class": [
+            "capacity-overload",
+            "cascading-failure",
+            "network"
+          ],
+          "blast_radius": [
+            "regional-outage"
+          ],
+          "trigger": "network blip caused synchronized membership renewals against an under-provisioned metadata service",
+          "lesson": "Watch how feature adoption grows internal payloads toward hard timeouts — the margin erodes silently until a routine blip synchronizes the fleet."
+        },
+        {
+          "id": "aws-pes-2014-08-eu-west-power",
+          "org": "Amazon",
+          "url": "https://aws.amazon.com/message/2329B7/",
+          "archived": false,
+          "summary": "[2014-08-07 | Amazon EC2, Amazon EBS, Amazon RDS (EU West / Dublin)] A utility 110kV transformer failure cut power to one Availability Zone, and the backup path failed when a PLC affected by a ground fault did not connect a portion of the generators, dropping nearly all EC2 instances and 58% of EBS volumes in the zone plus its inter-AZ networking. Recovery stretched over roughly three days as EBS volumes were restored via recovery snapshots; a separate latent EBS snapshot-cleanup software bug had additionally corrupted some snapshot data.",
+          "alive": true,
+          "http_status": "200",
+          "root_cause_class": [
+            "hardware-failure",
+            "software-bug",
+            "cascading-failure"
+          ],
+          "blast_radius": [
+            "partial-degradation",
+            "prolonged-recovery"
+          ],
+          "trigger": "transformer failure plus PLC ground fault blocked generator cutover",
+          "lesson": "Backup power is a chain of active components; a single stuck controller in the transfer path converts a utility event into a multi-day storage recovery."
+        },
+        {
+          "id": "aws-pes-2014-06-simpledb-us-east",
+          "org": "Amazon",
+          "url": "https://aws.amazon.com/message/65649/",
+          "archived": false,
+          "summary": "[2014-06-13 | Amazon SimpleDB (US-East)] Power loss to several storage nodes in one datacenter spiked load on SimpleDB's internal lock service as it de-registered the dead nodes; the elevated handshake latency pushed healthy nodes past their timeout, so they removed themselves from the cluster too, including the metadata nodes needed to authorize re-joins. SimpleDB was fully unavailable in US-East for about 2 hours, with elevated errors for several more; no data loss was reported.",
+          "alive": true,
+          "http_status": "200",
+          "root_cause_class": [
+            "hardware-failure",
+            "cascading-failure",
+            "software-bug"
+          ],
+          "blast_radius": [
+            "regional-outage"
+          ],
+          "trigger": "lock-service load spike made healthy nodes self-evict on handshake timeout",
+          "lesson": "Aggressive self-eviction on coordination latency turns a partial failure into total loss — back off when many peers fail simultaneously."
+        },
+        {
+          "id": "aws-pes-2013-12-sa-east-1",
+          "org": "Amazon",
+          "url": "https://aws.amazon.com/message/656481/",
+          "archived": false,
+          "summary": "[2013-12-17 | Amazon EC2/EBS (SA-EAST-1)] A utility substation fault dropped power to one Sao Paulo Availability Zone, and during generator failover a breaker opened in front of one generator while a second failed mechanically; the remaining generators overloaded and shut down in cascade, and a malfunctioning automated control system had to be bypassed for manual restart. Separately, during recovery a network technician's misconfiguration advertised invalid routes, degrading connectivity in both of the region's zones for 20 minutes. No data loss was reported.",
+          "alive": true,
+          "http_status": "200",
+          "root_cause_class": [
+            "hardware-failure",
+            "cascading-failure",
+            "human-operational-error"
+          ],
+          "blast_radius": [
+            "partial-degradation",
+            "prolonged-recovery"
+          ],
+          "trigger": "substation fault plus multiple generator failures during cutover",
+          "lesson": "Recovery actions are their own risk window — a hurried manual network change during an outage extended the blast radius to the healthy zone."
+        },
+        {
+          "id": "aws-pes-2012-12-elb-us-east",
+          "org": "Amazon",
+          "url": "https://aws.amazon.com/message/680587/",
+          "archived": false,
+          "summary": "[2012-12-24 | Amazon Elastic Load Balancing (US-East)] A developer inadvertently ran a maintenance process against the production ELB control-plane datastore, logically deleting a portion of load balancer state data. Missing state first caused API errors, then made the control plane actively misconfigure load balancers whenever they scaled or were modified, disrupting 6.8% of ELBs in US-East for roughly 22 hours over Christmas Eve; state was manually restored and workflows re-enabled gradually, with no permanent data loss.",
+          "alive": true,
+          "http_status": "200",
+          "root_cause_class": [
+            "human-operational-error",
+            "data-corruption-loss",
+            "process-gap"
+          ],
+          "blast_radius": [
+            "partial-degradation",
+            "prolonged-recovery"
+          ],
+          "trigger": "maintenance process run against production state data",
+          "lesson": "Gate mutating access to production control-plane data behind change management — a workflow that runs 'somewhere' will eventually run on prod."
+        },
+        {
+          "id": "aws-pes-2012-10-us-east-ebs",
+          "org": "Amazon",
+          "url": "https://aws.amazon.com/message/680342/",
+          "archived": false,
+          "summary": "[2012-10-22 | Amazon EBS and dependent services (US-East)] After a hardware replacement, an internal DNS update failed to propagate, so EBS storage servers kept trying to reach a decommissioned data-collection server; that path exercised a latent memory leak in the reporting agent, slowly starving EBS servers of memory until they lost the ability to serve requests. Failovers piled load onto equally memory-starved peers, degrading EBS in one Availability Zone for ~6 hours and dragging RDS, EC2, and ELB in that zone; a throttling policy misfire also impaired region-wide API access. No customer data loss was cited.",
+          "alive": true,
+          "http_status": "200",
+          "root_cause_class": [
+            "software-bug",
+            "dns-bgp",
+            "cascading-failure"
+          ],
+          "blast_radius": [
+            "partial-degradation"
+          ],
+          "trigger": "failed internal DNS propagation exposed a memory leak in a monitoring agent",
+          "lesson": "Monitoring agents need the same resource limits and health checks as the systems they watch — a leak in an 'auxiliary' process took down the fleet."
+        },
+        {
+          "id": "aws-pes-2012-06-us-east-storm",
+          "org": "Amazon",
+          "url": "https://aws.amazon.com/message/67457/",
+          "archived": false,
+          "summary": "[2012-06-29 | Amazon EC2/EBS/ELB and control plane (US-East)] A derecho storm's voltage spike hit two datacenters in one Availability Zone; one cut over to generators cleanly but the other's generators failed to hold stable voltage, so servers rode UPS until depletion, cutting power to about 7% of the zone's instances for ~4 hours. The zone failure cascaded into the regional control plane — the primary datastore lost power and failover did not engage automatically, blocking create/modify APIs region-wide for about an hour — and ELB recovery bugs prolonged customer impact. EBS volumes required consistency checks but no permanent loss was reported.",
+          "alive": true,
+          "http_status": "200",
+          "root_cause_class": [
+            "hardware-failure",
+            "cascading-failure",
+            "software-bug"
+          ],
+          "blast_radius": [
+            "partial-degradation",
+            "prolonged-recovery"
+          ],
+          "trigger": "storm voltage spike plus generators failing under load",
+          "lesson": "A single-AZ power event will find every control-plane component that is regional in practice; failover must be automatic and regularly exercised."
+        },
+        {
+          "id": "aws-pes-2011-04-ebs-us-east",
+          "org": "Amazon",
+          "url": "https://aws.amazon.com/message/65648/",
+          "archived": false,
+          "summary": "[2011-04-21 | Amazon EC2 (EBS) and Amazon RDS (US-East)] During a network upgrade, traffic for an EBS cluster's primary network was mistakenly routed onto the low-capacity secondary network, isolating the nodes; when connectivity returned, every node simultaneously hunted for re-mirroring capacity, exhausting the cluster in a 're-mirroring storm' and starving the EBS control plane's threads. Retry logic without backoff and a race-condition crash under mass connection closures compounded the backlog; 13% of the zone's EBS volumes stuck, 45% of single-AZ RDS instances impaired, recovery took 3+ days, and ~0.07% of affected volumes were unrecoverable.",
+          "alive": true,
+          "http_status": "200",
+          "root_cause_class": [
+            "config-change",
+            "network",
+            "cascading-failure"
+          ],
+          "blast_radius": [
+            "prolonged-recovery",
+            "data-loss"
+          ],
+          "trigger": "traffic shifted onto low-capacity secondary network during router upgrade",
+          "lesson": "Recovery mechanisms must be capacity-aware and back off — replication that retries aggressively after a partition becomes the second, worse outage."
+        }
+      ]
+    }
+  ]
+}

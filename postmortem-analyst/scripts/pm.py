@@ -22,12 +22,16 @@ import urllib.parse
 from pathlib import Path
 
 DATA = Path(__file__).resolve().parent.parent / "data" / "postmortems.json"
+EXTRA = Path(__file__).resolve().parent.parent / "data" / "extra_incidents.json"
 UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/126.0 Safari/537.36")
 
 
 def load():
-    return json.loads(DATA.read_text(encoding="utf-8"))
+    index = json.loads(DATA.read_text(encoding="utf-8"))
+    if EXTRA.exists():  # merged for search/show/fetch; refresh never touches EXTRA
+        index["categories"].extend(json.loads(EXTRA.read_text(encoding="utf-8"))["categories"])
+    return index
 
 
 def iter_entries(index, category=None):

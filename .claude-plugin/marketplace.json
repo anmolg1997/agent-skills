@@ -1,0 +1,21 @@
+{
+  "name": "agent-skills",
+  "owner": {
+    "name": "anmolg1997"
+  },
+  "description": "Incident-analysis Agent Skills: classic SRE postmortems and agentic-AI failures, each over a curated tagged corpus",
+  "plugins": [
+    {
+      "name": "postmortem-analyst",
+      "source": "./postmortem-analyst",
+      "description": "Incident precedent, pre-mortems, and postmortem review over 261 tagged real-world postmortems (danluu corpus + AWS PES)",
+      "version": "2.0.0"
+    },
+    {
+      "name": "ai-incident-analyst",
+      "source": "./ai-incident-analyst",
+      "description": "AI/LLM/agent failure analysis: curated incident corpus, 12-class failure vocabulary, agentic pre-mortem and design review",
+      "version": "1.0.0"
+    }
+  ]
+}
