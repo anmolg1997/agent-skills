@@ -49,7 +49,7 @@ Layout mirrors the sibling: `SKILL.md`, `README.md`, `data/ai_incidents.json`, `
 ## Part 3, Collection packaging
 
 - Catalog `README.md`: two-skill table, both install paths.
-- Plugin marketplace: `.claude-plugin/marketplace.json` (+ per-plugin manifests as the schema requires) so `/plugin marketplace add anmolg1997/agent-skills` works. Exact schema per official docs (verified by a docs agent during implementation). Clone+symlink path must keep working unchanged.
+- Plugin marketplace: `.claude-plugin/marketplace.json` (+ per-plugin manifests as the schema requires) so `/plugin marketplace add anmolg1997/prepostmortem-skills` works. Exact schema per official docs (verified by a docs agent during implementation). Clone+symlink path must keep working unchanged.
 - `~/.claude/skills/ai-incident-analyst` symlinked into the local checkout, like its sibling.
 
 ## Testing

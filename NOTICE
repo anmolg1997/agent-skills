@@ -1,0 +1,14 @@
+prepostmortem-skills
+Copyright 2026 the prepostmortem-skills authors
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+The original work here, the failure taxonomies and controlled vocabularies,
+the per-incident tags and transferable lessons, the canonical failure
+patterns, the command-line tooling, and the analysis workflows, is our own.
+
+Incident summaries and links reference third-party postmortems, court
+records, security disclosures, and public incident indexes that remain the
+property of their respective publishers. Each entry links to its original
+source. See the "References" section of README.md for the public work this
+corpus builds on.

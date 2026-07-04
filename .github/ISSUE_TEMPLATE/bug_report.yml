@@ -1,0 +1,28 @@
+name: Bug report
+description: Something in a skill or its tooling is wrong or broken
+title: "[bug] <short description>"
+labels: ["bug", "triage"]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where
+      options:
+        - postmortem-analyst (pm.py or corpus)
+        - ai-incident-analyst (ai.py or corpus)
+        - Plugin install / marketplace
+        - Docs
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, what you expected, what you got. Include the exact command and output.
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: Environment
+      placeholder: e.g. Claude Code 2.x, macOS 15, Python 3.12
