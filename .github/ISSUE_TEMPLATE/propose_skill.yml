@@ -1,0 +1,28 @@
+name: Propose a skill
+description: Suggest a new skill for the collection
+title: "[skill] <name>"
+labels: ["skill", "idea"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Skills in this collection stay close to the theme: learning from and preventing failure. Tell us what the skill does and why it belongs here.
+  - type: input
+    id: name
+    attributes:
+      label: Skill name
+      placeholder: e.g. chaos-experiment-designer
+    validations:
+      required: true
+  - type: textarea
+    id: purpose
+    attributes:
+      label: What it does and when it triggers
+      description: The "Use when" conditions, and the workflows it would run.
+    validations:
+      required: true
+  - type: textarea
+    id: data
+    attributes:
+      label: What corpus or references it needs
+      description: Does it ship data? Where would that data come from?

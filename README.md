@@ -1,13 +1,14 @@
 <p align="center">
-  <img src="assets/logo.svg" width="720" alt="agent-skills">
+  <img src="assets/logo.svg" width="720" alt="prepostmortem-skills">
 </p>
 
 <p align="center">
+  <a href="https://github.com/anmolg1997/prepostmortem-skills/actions/workflows/ci.yml"><img src="https://github.com/anmolg1997/prepostmortem-skills/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <img src="https://img.shields.io/badge/Claude_Code-plugin-6366F1?style=flat-square" alt="Claude Code plugin">
-  <img src="https://img.shields.io/badge/skills-2-8B5CF6?style=flat-square" alt="2 skills">
   <img src="https://img.shields.io/badge/postmortems-261-8B5CF6?style=flat-square" alt="261 postmortems">
   <img src="https://img.shields.io/badge/AI_failure_classes-12-F59E0B?style=flat-square" alt="12 AI failure classes">
   <img src="https://img.shields.io/badge/runtime_deps-0-22C55E?style=flat-square" alt="0 runtime deps">
+  <img src="https://img.shields.io/badge/license-Apache_2.0-3B82F6?style=flat-square" alt="Apache 2.0">
 </p>
 
 <p align="center"><b>Your outage has happened before. This tells your agent how it went last time, and what they wish they had done.</b></p>
@@ -22,7 +23,7 @@ No autonomous-RCA theater. Frontier agents solve ~11% of open RCA benchmarks, so
 
 Postmortems are a graveyard of expensive lessons that nobody reads twice. Meanwhile, the failure modes repeat, the same DNS cascade, the same config rollback that made things worse, the same agent that deleted prod because a prompt said "please don't." Generic LLM advice ("add monitoring, be careful") knows none of this history. Commercial incident tools see only your telemetry, never the public record, and never your code.
 
-`agent-skills` closes that gap. It is grounded, cited, and lives in your repo.
+**(pre·post)mortem** closes that gap. It is grounded, cited, and lives in your repo.
 
 ## What is inside
 
@@ -36,9 +37,9 @@ The two cross-delegate: an AI service inherits every classic infrastructure fail
 ## 30-second quickstart
 
 ```
-/plugin marketplace add anmolg1997/agent-skills
-/plugin install postmortem-analyst@agent-skills
-/plugin install ai-incident-analyst@agent-skills
+/plugin marketplace add anmolg1997/prepostmortem-skills
+/plugin install postmortem-analyst@prepostmortem-skills
+/plugin install ai-incident-analyst@prepostmortem-skills
 ```
 
 Then just describe your situation. Or drive the corpus directly:
@@ -68,7 +69,7 @@ echoleak-copilot  [prompt-injection+excessive-agency]  Microsoft (2025-06)
 
 ## What makes it different
 
-|  | Generic LLM advice | Commercial AI-SRE tools | **agent-skills** |
+|  | Generic LLM advice | Commercial AI-SRE tools | **(pre·post)mortem** |
 |---|:---:|:---:|:---:|
 | Grounded in real incidents | no | partial (yours only) | **261 + curated AI corpus** |
 | Every claim cites precedent | no | rarely | **yes, by incident id + URL** |
@@ -97,12 +98,12 @@ A cheap tagged-index search finds the right incidents; subagents deep-read only 
 **Or clone and symlink** into your skills directory:
 
 ```bash
-git clone https://github.com/anmolg1997/agent-skills ~/agent-skills
-ln -s ~/agent-skills/postmortem-analyst   ~/.claude/skills/postmortem-analyst
-ln -s ~/agent-skills/ai-incident-analyst  ~/.claude/skills/ai-incident-analyst
+git clone https://github.com/anmolg1997/prepostmortem-skills ~/prepostmortem-skills
+ln -s ~/prepostmortem-skills/postmortem-analyst   ~/.claude/skills/postmortem-analyst
+ln -s ~/prepostmortem-skills/ai-incident-analyst  ~/.claude/skills/ai-incident-analyst
 ```
 
-Claude Code discovers each skill automatically. Update with `git -C ~/agent-skills pull`.
+Claude Code discovers each skill automatically. Update with `git -C ~/prepostmortem-skills pull`.
 
 ## Layout
 
@@ -124,3 +125,12 @@ Public work that helped bring this to life. Thanks to the people behind:
 4. Berkeley's MAST taxonomy and the OWASP LLM Top-10, for the agentic failure model.
 
 Each incident links to its original source, whose content belongs to its publisher. The tags, lessons, taxonomies, tooling, and workflows here are our own.
+
+## Contributing
+
+Contributions are welcome, especially new well-documented incidents. See [CONTRIBUTING.md](CONTRIBUTING.md) for the schema and style, and [good first issues](https://github.com/anmolg1997/prepostmortem-skills/labels/good%20first%20issue) to start.
+
+## License
+
+[Apache-2.0](LICENSE). Original work (taxonomies, tags, lessons, tooling, workflows) is ours; linked incident content belongs to its publishers. See [NOTICE](NOTICE).
+
