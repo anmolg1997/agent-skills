@@ -43,7 +43,7 @@ def iter_entries(index, category=None):
 
 
 def entry_blob(e):
-    parts = [e["org"], e.get("summary", ""), e.get("trigger", ""), e.get("lesson", ""),
+    parts = [e["id"], e["org"], e.get("summary", ""), e.get("trigger", ""), e.get("lesson", ""),
              " ".join(e.get("root_cause_class", [])), " ".join(e.get("blast_radius", [])),
              e.get("suggested_category", "")]
     return " ".join(parts).lower()
