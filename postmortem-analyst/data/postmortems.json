@@ -86,7 +86,7 @@
           "blast_radius": [
             "partial-degradation"
           ],
-          "lesson": "Changes made outside infrastructure-as-code are invisible to responders and poison diagnosis — enforce least-privilege IAM and continuous drift detection."
+          "lesson": "Changes made outside infrastructure-as-code are invisible to responders and poison diagnosis - enforce least-privilege IAM and continuous drift detection."
         },
         {
           "id": "cloudflare",
@@ -107,7 +107,7 @@
           "blast_radius": [
             "global-outage"
           ],
-          "lesson": "A config rule deployed everywhere simultaneously fails everywhere simultaneously — stage and validate router config like code."
+          "lesson": "A config rule deployed everywhere simultaneously fails everywhere simultaneously - stage and validate router config like code."
         },
         {
           "id": "cloudflare-2",
@@ -151,7 +151,7 @@
           "blast_radius": [
             "partial-degradation"
           ],
-          "lesson": "The order of operations in a network config rollout is itself a correctness property — model and verify sequences, not just end states."
+          "lesson": "The order of operations in a network config rollout is itself a correctness property - model and verify sequences, not just end states."
         },
         {
           "id": "cloudflare-4",
@@ -192,7 +192,7 @@
           "blast_radius": [
             "partial-degradation"
           ],
-          "lesson": "Shared auth/token infrastructure is a single point of failure across product lines — release changes to it with extra staging and instant rollback."
+          "lesson": "Shared auth/token infrastructure is a single point of failure across product lines - release changes to it with extra staging and instant rollback."
         },
         {
           "id": "cloudflare-6",
@@ -212,7 +212,7 @@
           "blast_radius": [
             "partial-degradation"
           ],
-          "lesson": "External data feeds (like the DNS root zone) are untrusted input to your parsers — bound-check and fuzz them before a growth or format change does it for you."
+          "lesson": "External data feeds (like the DNS root zone) are untrusted input to your parsers - bound-check and fuzz them before a growth or format change does it for you."
         },
         {
           "id": "cloudflare-7",
@@ -254,7 +254,7 @@
           "blast_radius": [
             "partial-degradation"
           ],
-          "lesson": "A config error in a shared discovery layer converts one component's failure into a global one — partition blast domains in foundational services."
+          "lesson": "A config error in a shared discovery layer converts one component's failure into a global one - partition blast domains in foundational services."
         },
         {
           "id": "enom",
@@ -296,7 +296,7 @@
           "blast_radius": [
             "global-outage"
           ],
-          "lesson": "Verify the network fabric's configuration supports a new traffic pattern before shipping it — switches are part of your deployment surface."
+          "lesson": "Verify the network fabric's configuration supports a new traffic pattern before shipping it - switches are part of your deployment surface."
         },
         {
           "id": "facebook",
@@ -337,7 +337,7 @@
           "blast_radius": [
             "global-outage"
           ],
-          "lesson": "Properties sharing one config plane share one fate — canary globally-shared configuration and keep independent failure domains per product."
+          "lesson": "Properties sharing one config plane share one fate - canary globally-shared configuration and keep independent failure domains per product."
         },
         {
           "id": "firefox",
@@ -358,7 +358,7 @@
           "blast_radius": [
             "global-outage"
           ],
-          "lesson": "A client monoculture means one latent protocol bug plus one server-side change can brick every install at once — ship remote kill switches for risky subsystems."
+          "lesson": "A client monoculture means one latent protocol bug plus one server-side change can brick every install at once - ship remote kill switches for risky subsystems."
         },
         {
           "id": "github",
@@ -380,7 +380,7 @@
             "partial-degradation",
             "prolonged-recovery"
           ],
-          "lesson": "Recovery and rebuild tooling must not depend on the system being recovered — a zone rebuild that needs working DNS will corrupt the zone during a DNS outage."
+          "lesson": "Recovery and rebuild tooling must not depend on the system being recovered - a zone rebuild that needs working DNS will corrupt the zone during a DNS outage."
         },
         {
           "id": "github-2",
@@ -399,7 +399,7 @@
           "blast_radius": [
             "global-outage"
           ],
-          "lesson": "Health checks are coupled to config — validate that a change keeps hosts answering the exact probes that gate production traffic before rolling it out."
+          "lesson": "Health checks are coupled to config - validate that a change keeps hosts answering the exact probes that gate production traffic before rolling it out."
         },
         {
           "id": "github-3",
@@ -442,7 +442,7 @@
           "blast_radius": [
             "partial-degradation"
           ],
-          "lesson": "Failover configuration must be exercised under realistic combined failure modes — single-fault testing leaves the deadly combinations unproven."
+          "lesson": "Failover configuration must be exercised under realistic combined failure modes - single-fault testing leaves the deadly combinations unproven."
         },
         {
           "id": "google",
@@ -463,7 +463,7 @@
           "blast_radius": [
             "data-loss"
           ],
-          "lesson": "Deprecated options with destructive end-of-life behavior must be removed or loudly flagged — silent automatic deletion should never be a default anywhere."
+          "lesson": "Deprecated options with destructive end-of-life behavior must be removed or loudly flagged - silent automatic deletion should never be a default anywhere."
         },
         {
           "id": "google-2",
@@ -505,7 +505,7 @@
           "blast_radius": [
             "global-outage"
           ],
-          "lesson": "Automated config generation without semantic validation just automates the outage — diff against invariants and canary before fleet-wide rollout."
+          "lesson": "Automated config generation without semantic validation just automates the outage - diff against invariants and canary before fleet-wide rollout."
         },
         {
           "id": "google-4",
@@ -527,7 +527,7 @@
           "blast_radius": [
             "partial-degradation"
           ],
-          "lesson": "Shared internal services like quota fan failure out to every consumer — dependents should degrade open (fail permissive) when a policy service is down."
+          "lesson": "Shared internal services like quota fan failure out to every consumer - dependents should degrade open (fail permissive) when a policy service is down."
         },
         {
           "id": "google-5",
@@ -547,7 +547,7 @@
           "blast_radius": [
             "global-outage"
           ],
-          "lesson": "Validate config entries against absurd-match invariants — an entry that matches everything is almost never intended and should be rejected automatically."
+          "lesson": "Validate config entries against absurd-match invariants - an entry that matches everything is almost never intended and should be rejected automatically."
         },
         {
           "id": "google-6",
@@ -588,7 +588,7 @@
           "blast_radius": [
             "partial-degradation"
           ],
-          "lesson": "A capacity-mitigation change needs its own capacity model — under overload, retries amplify the problem and cascade to every dependent service."
+          "lesson": "A capacity-mitigation change needs its own capacity model - under overload, retries amplify the problem and cascade to every dependent service."
         },
         {
           "id": "google-8",
@@ -630,7 +630,7 @@
           "blast_radius": [
             "regional-outage"
           ],
-          "lesson": "Enabling a new feature is a deploy of every latent bug it activates — stage feature enablement per region with automated rollback."
+          "lesson": "Enabling a new feature is a deploy of every latent bug it activates - stage feature enablement per region with automated rollback."
         },
         {
           "id": "google-10",
@@ -650,7 +650,7 @@
           "blast_radius": [
             "partial-degradation"
           ],
-          "lesson": "Config-generation services are production-critical code paths — routine operations must not be able to emit unvalidated states to global load balancers."
+          "lesson": "Config-generation services are production-critical code paths - routine operations must not be able to emit unvalidated states to global load balancers."
         },
         {
           "id": "google-11",
@@ -691,7 +691,7 @@
           "blast_radius": [
             "partial-degradation"
           ],
-          "lesson": "Config distribution must verify converged state on every node, not fire-and-forget — partial propagation is worse than no propagation."
+          "lesson": "Config distribution must verify converged state on every node, not fire-and-forget - partial propagation is worse than no propagation."
         },
         {
           "id": "heroku-2",
@@ -711,7 +711,7 @@
           "blast_radius": [
             "partial-degradation"
           ],
-          "lesson": "Ship code and the config it requires atomically, or make code tolerate the config's absence — deploy ordering is an API contract."
+          "lesson": "Ship code and the config it requires atomically, or make code tolerate the config's absence - deploy ordering is an API contract."
         },
         {
           "id": "keepthescore",
@@ -752,7 +752,7 @@
           "blast_radius": [
             "global-outage"
           ],
-          "lesson": "Staged-rollout policy only protects you if it is technically enforced — 'small, low-risk' changes are exactly the ones that get exempted and then take everything down."
+          "lesson": "Staged-rollout policy only protects you if it is technically enforced - 'small, low-risk' changes are exactly the ones that get exempted and then take everything down."
         },
         {
           "id": "npm",
@@ -772,7 +772,7 @@
           "blast_radius": [
             "partial-degradation"
           ],
-          "lesson": "Learn the evaluation semantics of your CDN/proxy config language — hidden state resets (like restart reverting req.backend) must be covered by routing tests."
+          "lesson": "Learn the evaluation semantics of your CDN/proxy config language - hidden state resets (like restart reverting req.backend) must be covered by routing tests."
         },
         {
           "id": "owasa",
@@ -793,7 +793,7 @@
           "blast_radius": [
             "safety-incident"
           ],
-          "lesson": "Safety-critical controls need interlocks, confirmations, and physically distinct affordances — a single unguarded button should never cause an irreversible hazardous action."
+          "lesson": "Safety-critical controls need interlocks, confirmations, and physically distinct affordances - a single unguarded button should never cause an irreversible hazardous action."
         },
         {
           "id": "pagerduty",
@@ -837,7 +837,7 @@
             "data-loss",
             "financial-loss"
           ],
-          "lesson": "Durability and replication settings must be proven in failover drills — an actual hardware failure is the worst possible moment to discover the config was wrong."
+          "lesson": "Durability and replication settings must be proven in failover drills - an actual hardware failure is the worst possible moment to discover the config was wrong."
         },
         {
           "id": "rust-lang",
@@ -877,7 +877,7 @@
           "blast_radius": [
             "partial-degradation"
           ],
-          "lesson": "Smoke-test the single highest-volume request path immediately after every deploy — fast detection is what kept a total download break to 13 minutes."
+          "lesson": "Smoke-test the single highest-volume request path immediately after every deploy - fast detection is what kept a total download break to 13 minutes."
         },
         {
           "id": "stack-overflow",
@@ -898,7 +898,7 @@
           "blast_radius": [
             "global-outage"
           ],
-          "lesson": "Firewall changes deserve the same review and staged application as code — one rule can silently block all production traffic."
+          "lesson": "Firewall changes deserve the same review and staged application as code - one rule can silently block all production traffic."
         },
         {
           "id": "sentry",
@@ -918,7 +918,7 @@
           "blast_radius": [
             "data-leak"
           ],
-          "lesson": "Backups inherit the full sensitivity of the primary data — continuously audit storage ACLs rather than trusting the setting made at creation time."
+          "lesson": "Backups inherit the full sensitivity of the primary data - continuously audit storage ACLs rather than trusting the setting made at creation time."
         },
         {
           "id": "travisci",
@@ -939,7 +939,7 @@
           "blast_radius": [
             "partial-degradation"
           ],
-          "lesson": "A credential rotation is only done when every consumer is verified updated — partial rotation creates silent resource leaks that surface as capacity mysteries."
+          "lesson": "A credential rotation is only done when every consumer is verified updated - partial rotation creates silent resource leaks that surface as capacity mysteries."
         },
         {
           "id": "travisci-2",
@@ -962,7 +962,7 @@
             "data-loss",
             "prolonged-recovery"
           ],
-          "lesson": "Cleanup automation needs protection tags or allowlists for artifacts still in use, plus a dry-run mode — 'old' is not the same as 'unused'."
+          "lesson": "Cleanup automation needs protection tags or allowlists for artifacts still in use, plus a dry-run mode - 'old' is not the same as 'unused'."
         },
         {
           "id": "travisci-3",
@@ -1004,7 +1004,7 @@
           "blast_radius": [
             "data-loss"
           ],
-          "lesson": "Test contexts must be physically unable to reach production data — separate credentials and network paths per environment, not just different env-var values."
+          "lesson": "Test contexts must be physically unable to reach production data - separate credentials and network paths per environment, not just different env-var values."
         },
         {
           "id": "tui",
@@ -1024,7 +1024,7 @@
           "blast_radius": [
             "safety-incident"
           ],
-          "lesson": "Cross-check derived safety-critical values against independent estimates — a data-mapping bug in back-office software can become a physical aviation risk."
+          "lesson": "Cross-check derived safety-critical values against independent estimates - a data-mapping bug in back-office software can become a physical aviation risk."
         },
         {
           "id": "turso",
@@ -1094,7 +1094,7 @@
           "blast_radius": [
             "regional-outage"
           ],
-          "lesson": "Backup power has its own control-logic failure modes — test the switchover chain (PLCs, breakers), not just the generators."
+          "lesson": "Backup power has its own control-logic failure modes - test the switchover chain (PLCs, breakers), not just the generators."
         },
         {
           "id": "amazon-3",
@@ -1113,7 +1113,7 @@
           "blast_radius": [
             "regional-outage"
           ],
-          "lesson": "Passing periodic load tests does not guarantee performance during a real failover — validate backups under production-like load and duration."
+          "lesson": "Passing periodic load tests does not guarantee performance during a real failover - validate backups under production-like load and duration."
         },
         {
           "id": "amazon-4",
@@ -1132,7 +1132,7 @@
           "blast_radius": [
             "regional-outage"
           ],
-          "lesson": "Protection systems tuned to expected failure signatures miss real ones — design isolation to fail safe on ambiguous signals rather than drain reserves into a dead grid."
+          "lesson": "Protection systems tuned to expected failure signatures miss real ones - design isolation to fail safe on ambiguous signals rather than drain reserves into a dead grid."
         },
         {
           "id": "amazon-5",
@@ -1153,7 +1153,7 @@
           "blast_radius": [
             "regional-outage"
           ],
-          "lesson": "Redundancy is capacity-bounded — losing two backups can overload and cascade the rest, and rushed recovery actions (a bad device config) can extend the blast radius."
+          "lesson": "Redundancy is capacity-bounded - losing two backups can overload and cascade the rest, and rushed recovery actions (a bad device config) can extend the blast radius."
         },
         {
           "id": "amazon-6",
@@ -1174,7 +1174,7 @@
           "blast_radius": [
             "regional-outage"
           ],
-          "lesson": "Facility control software is a hidden single point of failure — cooling must fail into a safe mode that does not depend on the control plane being responsive."
+          "lesson": "Facility control software is a hidden single point of failure - cooling must fail into a safe mode that does not depend on the control plane being responsive."
         },
         {
           "id": "arpanet",
@@ -1197,7 +1197,7 @@
           "blast_radius": [
             "global-outage"
           ],
-          "lesson": "Recomputing integrity checks after corruption launders bad data — validate semantic plausibility before propagating state, not just checksums."
+          "lesson": "Recomputing integrity checks after corruption launders bad data - validate semantic plausibility before propagating state, not just checksums."
         },
         {
           "id": "cloudflare-8",
@@ -1219,7 +1219,7 @@
             "partial-degradation",
             "prolonged-recovery"
           ],
-          "lesson": "A half-dead component is worse than a dead one — design failure detection for Byzantine partial failures, not just clean crashes."
+          "lesson": "A half-dead component is worse than a dead one - design failure detection for Byzantine partial failures, not just clean crashes."
         },
         {
           "id": "cloudflare-9",
@@ -1241,7 +1241,7 @@
             "prolonged-recovery",
             "partial-degradation"
           ],
-          "lesson": "HA architectures rot as new products launch — continuously audit that every critical service actually runs on the high-availability cluster, and rehearse full-facility loss."
+          "lesson": "HA architectures rot as new products launch - continuously audit that every critical service actually runs on the high-availability cluster, and rehearse full-facility loss."
         },
         {
           "id": "firstenergy-general-electric",
@@ -1263,7 +1263,7 @@
             "regional-outage",
             "safety-incident"
           ],
-          "lesson": "When monitoring fails silently, operators act on a stale model of the world — alarm and monitoring systems need their own independent health checks."
+          "lesson": "When monitoring fails silently, operators act on a stale model of the world - alarm and monitoring systems need their own independent health checks."
         },
         {
           "id": "github-4",
@@ -1302,7 +1302,7 @@
           "blast_radius": [
             "data-loss"
           ],
-          "lesson": "Write caches and single-facility persistence lose data in extended power failure — durable data must be replicated beyond one power domain."
+          "lesson": "Write caches and single-facility persistence lose data in extended power failure - durable data must be replicated beyond one power domain."
         },
         {
           "id": "google-13",
@@ -1321,7 +1321,7 @@
           "blast_radius": [
             "regional-outage"
           ],
-          "lesson": "Redundant systems that share an environmental stressor fail together — redundancy must be evaluated against correlated causes, not component counts."
+          "lesson": "Redundant systems that share an environmental stressor fail together - redundancy must be evaluated against correlated causes, not component counts."
         },
         {
           "id": "pythonanywhere",
@@ -1341,7 +1341,7 @@
           "blast_radius": [
             "partial-degradation"
           ],
-          "lesson": "Shared storage concentrates blast radius — map which customers and services ride on each volume so a single device failure is not a surprise multi-service outage."
+          "lesson": "Shared storage concentrates blast radius - map which customers and services ride on each volume so a single device failure is not a surprise multi-service outage."
         },
         {
           "id": "sun",
@@ -1391,7 +1391,7 @@
             "regional-outage",
             "prolonged-recovery"
           ],
-          "lesson": "Redundant automation actors need ordering and fencing guarantees — two uncoordinated enactors applying plans can delete the source of truth."
+          "lesson": "Redundant automation actors need ordering and fencing guarantees - two uncoordinated enactors applying plans can delete the source of truth."
         },
         {
           "id": "ccp-games",
@@ -1413,7 +1413,7 @@
           "blast_radius": [
             "data-loss"
           ],
-          "lesson": "Never write to paths that can collide with operating-system files — installer file operations need namespacing and real-OS testing."
+          "lesson": "Never write to paths that can collide with operating-system files - installer file operations need namespacing and real-OS testing."
         },
         {
           "id": "github-5",
@@ -1435,7 +1435,7 @@
             "global-outage",
             "prolonged-recovery"
           ],
-          "lesson": "HA automata (heartbeats, STONITH) tuned for steady state can mass-fence healthy nodes during a brief network freeze — bound their authority and rehearse pair-recovery."
+          "lesson": "HA automata (heartbeats, STONITH) tuned for steady state can mass-fence healthy nodes during a brief network freeze - bound their authority and rehearse pair-recovery."
         },
         {
           "id": "github-6",
@@ -1457,7 +1457,7 @@
             "prolonged-recovery",
             "partial-degradation"
           ],
-          "lesson": "Automated failover to a lagging replica trades seconds of downtime for a day of data reconciliation — failover logic must be consistency-aware, not just liveness-aware."
+          "lesson": "Automated failover to a lagging replica trades seconds of downtime for a day of data reconciliation - failover logic must be consistency-aware, not just liveness-aware."
         },
         {
           "id": "github-7",
@@ -1477,7 +1477,7 @@
           "blast_radius": [
             "partial-degradation"
           ],
-          "lesson": "Membership changes to consensus systems must be serialized and quorum-verified — split brain arrives via routine reprovisioning, not just network partitions."
+          "lesson": "Membership changes to consensus systems must be serialized and quorum-verified - split brain arrives via routine reprovisioning, not just network partitions."
         },
         {
           "id": "gocardless-2",
@@ -1497,7 +1497,7 @@
           "blast_radius": [
             "partial-degradation"
           ],
-          "lesson": "DDL lock requests queue ahead of all new queries while waiting — run migrations with lock timeouts and retries so they yield instead of blocking the world."
+          "lesson": "DDL lock requests queue ahead of all new queries while waiting - run migrations with lock timeouts and retries so they yield instead of blocking the world."
         },
         {
           "id": "google-14",
@@ -1517,7 +1517,7 @@
           "blast_radius": [
             "partial-degradation"
           ],
-          "lesson": "Rarely exercised code paths have unknown performance envelopes — bulk operations through them can freeze a control plane for hours."
+          "lesson": "Rarely exercised code paths have unknown performance envelopes - bulk operations through them can freeze a control plane for hours."
         },
         {
           "id": "google-15",
@@ -1538,7 +1538,7 @@
           "blast_radius": [
             "partial-degradation"
           ],
-          "lesson": "Automatic rerouting preserves connectivity but not capacity — provision for N-1 bandwidth, not just N-1 paths."
+          "lesson": "Automatic rerouting preserves connectivity but not capacity - provision for N-1 bandwidth, not just N-1 paths."
         },
         {
           "id": "incident-io",
@@ -1558,7 +1558,7 @@
           "blast_radius": [
             "partial-degradation"
           ],
-          "lesson": "Database sequences guarantee uniqueness, not contiguity — never build user-facing contiguous numbering directly on nextval across failovers."
+          "lesson": "Database sequences guarantee uniqueness, not contiguity - never build user-facing contiguous numbering directly on nextval across failovers."
         },
         {
           "id": "knight-capital",
@@ -1581,7 +1581,7 @@
           "blast_radius": [
             "financial-loss"
           ],
-          "lesson": "Reusing old feature flags plus non-atomic manual deploys is lethal — deployments must be automated, verified on every node, with a rehearsed kill switch."
+          "lesson": "Reusing old feature flags plus non-atomic manual deploys is lethal - deployments must be automated, verified on every node, with a rehearsed kill switch."
         },
         {
           "id": "webkit-code-repository",
@@ -1601,7 +1601,7 @@
           "blast_radius": [
             "partial-degradation"
           ],
-          "lesson": "Any system keyed on a hash inherits that hash's collision resistance — know how your storage behaves when identifiers collide before someone makes them collide."
+          "lesson": "Any system keyed on a hash inherits that hash's collision resistance - know how your storage behaves when identifiers collide before someone makes them collide."
         }
       ]
     },
@@ -1628,7 +1628,7 @@
           "blast_radius": [
             "global-outage"
           ],
-          "lesson": "Never hand-roll calendar arithmetic — leap days break naive year+1 logic, and certificate-creation code turns that into a fleet-wide trust failure."
+          "lesson": "Never hand-roll calendar arithmetic - leap days break naive year+1 logic, and certificate-creation code turns that into a fleet-wide trust failure."
         },
         {
           "id": "cloudflare-10",
@@ -1651,7 +1651,7 @@
           "blast_radius": [
             "partial-degradation"
           ],
-          "lesson": "Wall clocks go backwards — use monotonic clocks for durations and clamp negative deltas before they reach code that assumes non-negative time."
+          "lesson": "Wall clocks go backwards - use monotonic clocks for durations and clamp negative deltas before they reach code that assumes non-negative time."
         },
         {
           "id": "linux",
@@ -1672,7 +1672,7 @@
           "blast_radius": [
             "partial-degradation"
           ],
-          "lesson": "Do no side effects while holding core locks — rare-path code running in interrupt context needs the same lock discipline as hot paths, and gets far less testing."
+          "lesson": "Do no side effects while holding core locks - rare-path code running in interrupt context needs the same lock discipline as hot paths, and gets far less testing."
         },
         {
           "id": "linux-2",
@@ -1694,7 +1694,7 @@
           "blast_radius": [
             "global-outage"
           ],
-          "lesson": "Clock adjustments must update every derived timekeeping structure atomically — a one-second skew in timer bases melted CPU across much of the internet in 2012."
+          "lesson": "Clock adjustments must update every derived timekeeping structure atomically - a one-second skew in timer bases melted CPU across much of the internet in 2012."
         },
         {
           "id": "mozilla",
@@ -1747,7 +1747,7 @@
             "prolonged-recovery",
             "partial-degradation"
           ],
-          "lesson": "Past the saturation tipping point rollbacks no longer help — shed load before the cliff, and make sure failure-mode throttles can tell a recovery surge from an attack."
+          "lesson": "Past the saturation tipping point rollbacks no longer help - shed load before the cliff, and make sure failure-mode throttles can tell a recovery surge from an attack."
         },
         {
           "id": "circleci-4",
@@ -1767,7 +1767,7 @@
           "blast_radius": [
             "partial-degradation"
           ],
-          "lesson": "A database that starts is not a database that performs — re-run and verify planner statistics and cache warmth as the final gate before cutover."
+          "lesson": "A database that starts is not a database that performs - re-run and verify planner statistics and cache warmth as the final gate before cutover."
         },
         {
           "id": "github-8",
@@ -1789,7 +1789,7 @@
             "data-leak",
             "partial-degradation"
           ],
-          "lesson": "Split brain in the failover manager is worse than the failure it manages — a stale elected master can silently serve other tenants' data."
+          "lesson": "Split brain in the failover manager is worse than the failure it manages - a stale elected master can silently serve other tenants' data."
         },
         {
           "id": "github-9",
@@ -1810,7 +1810,7 @@
           "blast_radius": [
             "partial-degradation"
           ],
-          "lesson": "Verify effective runtime limits, not configured ones — init systems silently clamp values above kernel maxima and the truncation only shows at peak load."
+          "lesson": "Verify effective runtime limits, not configured ones - init systems silently clamp values above kernel maxima and the truncation only shows at peak load."
         },
         {
           "id": "github-10",
@@ -1830,7 +1830,7 @@
           "blast_radius": [
             "partial-degradation"
           ],
-          "lesson": "Integer-key exhaustion is a scheduled outage visible years in advance — monitor key headroom fleet-wide and apply new lint rules retroactively to columns that predate them."
+          "lesson": "Integer-key exhaustion is a scheduled outage visible years in advance - monitor key headroom fleet-wide and apply new lint rules retroactively to columns that predate them."
         },
         {
           "id": "github-11",
@@ -1850,7 +1850,7 @@
           "blast_radius": [
             "partial-degradation"
           ],
-          "lesson": "Shared mothership clusters accumulate tenants until peak load is an incident — partition workloads before hitting the ceiling, and remember debugging tools (memory profiling) add load of their own."
+          "lesson": "Shared mothership clusters accumulate tenants until peak load is an incident - partition workloads before hitting the ceiling, and remember debugging tools (memory profiling) add load of their own."
         },
         {
           "id": "github-12",
@@ -1893,7 +1893,7 @@
           "blast_radius": [
             "global-outage"
           ],
-          "lesson": "Cache-policy changes are capacity changes — model the added reads and write amplification at peak before shortening TTLs, and alert on silent client traffic growth."
+          "lesson": "Cache-policy changes are capacity changes - model the added reads and write amplification at peak before shortening TTLs, and alert on silent client traffic growth."
         },
         {
           "id": "github-14",
@@ -1914,7 +1914,7 @@
           "blast_radius": [
             "partial-degradation"
           ],
-          "lesson": "Routine operations hit novel failure modes at sufficient scale — bound replica-loss cascades with admission control so the healthy remainder is not stampeded."
+          "lesson": "Routine operations hit novel failure modes at sufficient scale - bound replica-loss cascades with admission control so the healthy remainder is not stampeded."
         },
         {
           "id": "heroku-3",
@@ -1934,7 +1934,7 @@
           "blast_radius": [
             "global-outage"
           ],
-          "lesson": "Referencing and referenced columns must share a type — a width mismatch is a delayed-action outage that detonates exactly when the sequence crosses the smaller bound."
+          "lesson": "Referencing and referenced columns must share a type - a width mismatch is a delayed-action outage that detonates exactly when the sequence crosses the smaller bound."
         },
         {
           "id": "incident-io-2",
@@ -1943,7 +1943,7 @@
           "archived": false,
           "original_url": null,
           "extra_urls": [],
-          "summary": "Two weeks of intermittent app timeouts, with traces showing requests waiting up to 20s for a connection from Go's `database/sql` pool, but contention spread across many endpoints rather than a single slow query. After 24 deploys' worth of fixes (materialized views, indexes, lock timeouts, async Slack-webhook handling, and a custom `ngrok/sqlmw` middleware to attribute connection-pool hold time per operation), the root cause turned out to be an unnecessary transaction wrapping every Slack modal submission — many small fast transactions were in aggregate exhausting the pool.",
+          "summary": "Two weeks of intermittent app timeouts, with traces showing requests waiting up to 20s for a connection from Go's `database/sql` pool, but contention spread across many endpoints rather than a single slow query. After 24 deploys' worth of fixes (materialized views, indexes, lock timeouts, async Slack-webhook handling, and a custom `ngrok/sqlmw` middleware to attribute connection-pool hold time per operation), the root cause turned out to be an unnecessary transaction wrapping every Slack modal submission - many small fast transactions were in aggregate exhausting the pool.",
           "http_status": "200",
           "alive": true,
           "root_cause_class": [
@@ -1955,7 +1955,7 @@
           "blast_radius": [
             "partial-degradation"
           ],
-          "lesson": "Pool exhaustion presents as everything being slightly slow rather than one slow query — instrument which operation holds each connection and for how long, and never open transactions you don't need."
+          "lesson": "Pool exhaustion presents as everything being slightly slow rather than one slow query - instrument which operation holds each connection and for how long, and never open transactions you don't need."
         },
         {
           "id": "incident-io-3",
@@ -1976,7 +1976,7 @@
           "blast_radius": [
             "partial-degradation"
           ],
-          "lesson": "Extensions run inside your database's blast radius — revalidate each one against the new major version in production-like conditions, and prefer a fast deliberate restart over prolonged lock paralysis."
+          "lesson": "Extensions run inside your database's blast radius - revalidate each one against the new major version in production-like conditions, and prefer a fast deliberate restart over prolonged lock paralysis."
         }
       ]
     },
@@ -4475,7 +4475,7 @@
           "blast_radius": [
             "global-outage"
           ],
-          "lesson": "Provider network components have their own scaling lag, and losing your dashboards in the same event multiplies recovery time — keep observability off the shared failure path.",
+          "lesson": "Provider network components have their own scaling lag, and losing your dashboards in the same event multiplies recovery time - keep observability off the shared failure path.",
           "suggested_category": "cloud network saturation"
         },
         {
@@ -4711,7 +4711,7 @@
           "blast_radius": [
             "safety-incident"
           ],
-          "lesson": "Unify measurement standards and demand independent design review when scaling beyond anything previously built — a 400-year-old units lesson that Mars Climate Orbiter repeated.",
+          "lesson": "Unify measurement standards and demand independent design review when scaling beyond anything previously built - a 400-year-old units lesson that Mars Climate Orbiter repeated.",
           "suggested_category": "engineering-process classics"
         },
         {
@@ -4860,7 +4860,7 @@
           "blast_radius": [
             "data-loss"
           ],
-          "lesson": "Guard destructive shell operations against unset variables, and triage inbound bug reports — time-to-mitigate is a process property, not a technical one.",
+          "lesson": "Guard destructive shell operations against unset variables, and triage inbound bug reports - time-to-mitigate is a process property, not a technical one.",
           "suggested_category": "destructive-script bugs and triage gaps"
         },
         {
@@ -5066,7 +5066,7 @@
           "http_status": "archive-snapshot-unverified",
           "alive": true,
           "health_note": "archive.org throttled our checker; snapshot URLs are durable",
-          "note": "Archived catalog of startup failure stories — business postmortems rather than technical outages."
+          "note": "Archived catalog of startup failure stories - business postmortems rather than technical outages."
         },
         {
           "id": "sre-weekly",
@@ -5232,7 +5232,7 @@
       },
       {
         "name": "Wrong-scope settings and credential bleed",
-        "description": "Configuration or credentials reach the wrong environment, tenant, or physical system — test hits prod, backups leak across tenants, durability settings are wrong, a control acts on the wrong target — yielding data loss, leaks, or safety incidents rather than downtime.",
+        "description": "Configuration or credentials reach the wrong environment, tenant, or physical system - test hits prod, backups leak across tenants, durability settings are wrong, a control acts on the wrong target - yielding data loss, leaks, or safety incidents rather than downtime.",
         "entry_ids": [
           "travisci-4",
           "sentry",
@@ -5319,7 +5319,7 @@
       },
       {
         "name": "Failover exposes weaker guarantees than steady state",
-        "description": "Promotion of a standby surfaces properties invisible in normal operation — lost tail writes, sequence gaps — because replicas see a different state than the primary.",
+        "description": "Promotion of a standby surfaces properties invisible in normal operation - lost tail writes, sequence gaps - because replicas see a different state than the primary.",
         "entry_ids": [
           "github-6",
           "incident-io"
@@ -5468,7 +5468,7 @@
       },
       {
         "name": "Operator action with over-broad blast radius",
-        "description": "A human runs a legitimate command or script whose scope is wider than intended — a typo'd argument, wrong ID list, or maintenance job pointed at production — and tooling lacks guardrails (rate limits, soft delete, minimum-capacity floors) to contain it.",
+        "description": "A human runs a legitimate command or script whose scope is wider than intended - a typo'd argument, wrong ID list, or maintenance job pointed at production - and tooling lacks guardrails (rate limits, soft delete, minimum-capacity floors) to contain it.",
         "entry_ids": [
           "amazon-8",
           "amazon-10",
@@ -5532,7 +5532,7 @@
       },
       {
         "name": "Database maintenance debt and hidden limits",
-        "description": "Known-but-deferred database ceilings — XID/ID wraparound, 32-bit id overflow, memory working sets, managed-service size caps — eventually arrive on their own schedule and fail catastrophically rather than gracefully.",
+        "description": "Known-but-deferred database ceilings - XID/ID wraparound, 32-bit id overflow, memory working sets, managed-service size caps - eventually arrive on their own schedule and fail catastrophically rather than gracefully.",
         "entry_ids": [
           "mandrill",
           "joyent",
@@ -5553,8 +5553,8 @@
         ]
       },
       {
-        "name": "Retry/reconnect storms turn a blip into a cascading outage —",
-        "description": "Retry/reconnect storms turn a blip into a cascading outage — clients without backoff or admission control amplify the initial failure",
+        "name": "Retry/reconnect storms turn a blip into a cascading outage -",
+        "description": "Retry/reconnect storms turn a blip into a cascading outage - clients without backoff or admission control amplify the initial failure",
         "entry_ids": [
           "slack",
           "slack-2",
@@ -5575,8 +5575,8 @@
         ]
       },
       {
-        "name": "Redundancy defeated by hidden shared coupling — 'independent",
-        "description": "Redundancy defeated by hidden shared coupling — 'independent' paths share a peering point, cluster, or vendor",
+        "name": "Redundancy defeated by hidden shared coupling - 'independent",
+        "description": "Redundancy defeated by hidden shared coupling - 'independent' paths share a peering point, cluster, or vendor",
         "entry_ids": [
           "pagerduty-2",
           "pagerduty-3",
@@ -5597,8 +5597,8 @@
         ]
       },
       {
-        "name": "Routine manual operations on production without guardrails —",
-        "description": "Routine manual operations on production without guardrails — a repetitive task or ad-hoc DB op done wrong once takes everything down",
+        "name": "Routine manual operations on production without guardrails -",
+        "description": "Routine manual operations on production without guardrails - a repetitive task or ad-hoc DB op done wrong once takes everything down",
         "entry_ids": [
           "stripe",
           "trivago",

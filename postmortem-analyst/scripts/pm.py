@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""pm.py — CLI over the danluu/post-mortems enriched index.
+"""pm.py, CLI over the danluu/post-mortems enriched index.
 
 Subcommands:
   search   keyword/tag search over the index
@@ -68,7 +68,7 @@ def cmd_search(args, index):
                          indent=2, ensure_ascii=False))
         return
     for cat, e in hits[: args.limit]:
-        status = "" if e.get("alive", True) else " [DEAD LINK — use fetch, it falls back to Wayback]"
+        status = "" if e.get("alive", True) else " [DEAD LINK, use fetch, it falls back to Wayback]"
         print(f"{e['id']}  ({cat['slug']})  {e['org']}{status}")
         print(f"  cause={','.join(e.get('root_cause_class', []))}  "
               f"blast={','.join(e.get('blast_radius', []))}")
@@ -244,7 +244,7 @@ def cmd_refresh(args, index):
                                         "count": len(entries), "entries": entries})
     DATA.write_text(json.dumps(new_index, indent=2, ensure_ascii=False), encoding="utf-8")
     total = sum(c["count"] for c in new_index["categories"])
-    print(f"refreshed: {total} entries ({added} new/changed — new ones lack tags; re-run tagging on them)")
+    print(f"refreshed: {total} entries ({added} new/changed, new ones lack tags; re-run tagging on them)")
 
 
 def main():

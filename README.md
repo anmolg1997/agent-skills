@@ -1,6 +1,6 @@
 # Agent Skills
 
-A growing collection of [Agent Skills](https://agentskills.io) for Claude Code and compatible agents. Each skill is a self-contained folder with a `SKILL.md` entry point, its own curated data, references, and scripts — no dependencies beyond Python 3 stdlib and standard CLI tools.
+A growing collection of [Agent Skills](https://agentskills.io) for Claude Code and compatible agents. Each skill is a self-contained folder with a `SKILL.md` entry point, its own curated data, references, and scripts, no dependencies beyond Python 3 stdlib and standard CLI tools.
 
 ## Skills
 
