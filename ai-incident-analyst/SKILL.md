@@ -34,7 +34,7 @@ The corpus is small and curated (~20 incidents chosen for lesson density) — re
 
 "Has an AI system failed this way before?" — search by class + keywords; answer from the index's mechanisms and lessons. For depth, use the nested reader pattern: dispatch one agent per relevant incident with the prompt template below, then synthesize with citations (id + URL).
 
-> Fetch this incident's sources: run `python3 <skill-dir>/scripts/ai.py fetch <id> --out <absolute-scratchpad-path>/<id>.txt` then read the file. Extract, ≤300 words: (1) the failure mechanism chain, (2) which safety controls were missing or bypassed, (3) remediations adopted (or absent — note that too), (4) how this maps onto: <one-paragraph description of the user's situation>. If the fetch fails, say FETCH-FAILED and stop.
+> Fetch this incident's sources: run `python3 <skill-dir>/scripts/ai.py fetch <id> --out <absolute-scratchpad-path>/<id>.txt` then read the file. Extract, ≤300 words: (1) the failure mechanism chain, (2) which safety controls were missing or bypassed, (3) remediations adopted (or absent — note that too), (4) how this maps onto: <one-paragraph description of the user's situation>. If the file is dominated by nav/page-chrome and thin on article text (common for JS-heavy sites), the substance is usually still there — grep for it, or re-run `fetch` on the entry's other URLs before giving up. Only say FETCH-FAILED if no candidate URL yields usable content.
 
 For incidents beyond the curated corpus, query AIID (see `references/databases.md`) via WebFetch.
 
