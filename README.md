@@ -13,7 +13,7 @@ A growing collection of [Agent Skills](https://agentskills.io) for Claude Code a
 Clone once, then symlink the skills you want into your agent's skills directory:
 
 ```bash
-git clone https://github.com/<you>/<this-repo> ~/agent-skills
+git clone https://github.com/anmolg1997/agent-skills ~/agent-skills
 ln -s ~/agent-skills/postmortem-analyst ~/.claude/skills/postmortem-analyst
 ```
 

@@ -11,8 +11,11 @@ An [Agent Skill](https://agentskills.io) for Claude Code that turns [danluu/post
 
 ## Install
 
+This skill lives in the [agent-skills](https://github.com/anmolg1997/agent-skills) collection:
+
 ```bash
-git clone https://github.com/<you>/postmortem-analyst ~/.claude/skills/postmortem-analyst
+git clone https://github.com/anmolg1997/agent-skills ~/agent-skills
+ln -s ~/agent-skills/postmortem-analyst ~/.claude/skills/postmortem-analyst
 ```
 
 Claude Code picks it up automatically as skill `postmortem-analyst`. No dependencies beyond Python 3 stdlib and `curl`.
