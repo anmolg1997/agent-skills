@@ -1,13 +1,13 @@
 ---
 name: postmortem-analyst
-description: Use when analyzing an incident or outage and wanting precedent, researching how real companies failed (config errors, cascading failures, DNS/BGP, data loss, cloud outages), writing or reviewing a postmortem/incident report, surveying failure patterns across the industry, or when the user mentions danluu/post-mortems, incident retrospectives, RCA, or "has anyone else hit this".
+description: Use when analyzing an incident or outage and wanting precedent, researching how real companies failed (config errors, cascading failures, DNS/BGP, data loss, cloud outages), writing or reviewing a postmortem/incident report, running a pre-mortem or FMEA on a risky change or migration plan, mining a directory of past postmortems for recurring patterns, or when the user mentions danluu/post-mortems, incident retrospectives, RCA, blameless postmortems, or "has anyone else hit this".
 ---
 
 # Postmortem Analyst
 
 ## Overview
 
-An agentic harness over the danluu/post-mortems corpus: **243 real-world incident postmortems** (Google, Cloudflare, AWS, GitHub, GitLab, Facebook, NASA, …) parsed into a tagged, link-health-checked index at `data/postmortems.json`, with per-category references and a failure-mode taxonomy. Analysis runs **nested**: cheap index search first, then fan-out subagents that deep-read only the relevant postmortems, then synthesis. Never bulk-read the corpus into the main context.
+An agentic harness over **261 real-world incident postmortems**: the danluu/post-mortems corpus (243 — Google, Cloudflare, AWS, GitHub, GitLab, Facebook, NASA, …) plus AWS Post-Event Summaries (18), parsed into tagged, link-health-checked indexes (`data/postmortems.json` + `data/extra_incidents.json`), with per-category references and a failure-mode taxonomy. Analysis runs **nested**: cheap index search first, then fan-out subagents that deep-read only the relevant postmortems, then synthesis. Never bulk-read the corpus into the main context. For AI/LLM/agent behavior failures, use the sibling **ai-incident-analyst** skill.
 
 ## Quick reference
 
@@ -25,6 +25,8 @@ All commands run from this skill's directory (`cd ~/.claude/skills/postmortem-an
 
 Tag vocabularies and recurring mechanisms: `references/taxonomy.md`.
 Per-category curated lists: `references/<category-slug>.md` (config-errors, hardware-power-failures, conflicts, time, database, uncategorized, other-lists-of-postmortems, analysis).
+Methodology canon (SRE template, Howie, Etsy facilitation, Cook, Klein pre-mortem): `references/methodology.md`.
+Postmortem quality rubric: `references/review-rubric.md`. Further public corpora and feeds: `references/sources.md`.
 
 ## Choosing the nesting level
 
@@ -63,17 +65,35 @@ Use for "what are the lessons of <category or theme>".
 
 Same shape as L2 across all categories, orchestrated with the Workflow tool (pipeline: slice → read → verify → synthesize). Multi-agent orchestration at this scale needs explicit user opt-in — confirm before launching unless they already asked for it.
 
-## Reviewing or writing a postmortem
+## Reviewing a postmortem draft
 
-Use the corpus as the rubric, not a template:
+Rubric-driven — read `references/review-rubric.md` and score the draft against all 8 dimensions (blameless language, mechanism chain vs single root cause, hindsight bias, detection analysis, response analysis, action-item quality, luck accounting, impact honesty). Pull 3–5 tagged precedents for the draft's root-cause classes (L1 if depth needed) and cite them in every recommendation. Output the rubric's format: scorecard, top-3 before→after rewrites, missing-content list.
 
-1. Identify the draft's root-cause classes; pull the matching taxonomy section and 3–5 tagged precedents (L1 if depth needed).
-2. Check the draft against what good corpus postmortems contain: mechanism chain (not just "root cause"), timeline with detection/mitigation timestamps, why defenses missed it, contributing factors beyond the trigger, remediations that remove the failure class (compare with precedent remediations), and blameless framing (see `human-operational-error` incidents — the fix is never "be more careful").
-3. Cite precedent incidents in the review so recommendations carry evidence.
+## Writing a postmortem
 
-## Data contract (`data/postmortems.json`)
+Follow `references/methodology.md`: Google SRE section structure, Howie's multiple-perspectives discipline (don't flatten responders' differing views into one narrative), Cook's stance (mechanism chain + contributing factors + enabling conditions — never a singular root cause; "human error" starts analysis, never concludes it). Ground remediation proposals in corpus precedent. Self-check the result against `references/review-rubric.md` before delivering.
 
-`categories[].entries[]`: `id` (stable slug, e.g. `cloudflare-3`), `org`, `url`, `summary`, `alive` + `http_status` (link health), `archived`/`wayback_url` (archive fallbacks), `root_cause_class[]`, `trigger`, `blast_radius[]`, `lesson`, `suggested_category` (proposed sub-bucket for uncategorized). Top-level `canonical_patterns` maps category → recurring mechanisms with entry ids.
+## Pre-mortem / FMEA for a planned change
+
+Use when the user has a design doc, migration plan, or risky PR and wants failure analysis *before* shipping.
+
+1. Read the plan; inventory what it touches (systems, data, traffic, config surfaces, rollback paths).
+2. Klein framing (see `references/methodology.md`): "It is six months later and this change caused a serious incident — write the postmortem headline." Generate 5–10 concrete failure narratives, not abstract risks.
+3. For each narrative, ground it in precedent: `pm.py search` for the same mechanism (config rollout, migration, failover, capacity). A pre-mortem entry with a real incident id ("this is exactly `circleci` — type change made rollback unsafe") carries weight an invented scenario doesn't. Drop narratives with neither precedent nor a concrete mechanism.
+4. Output an FMEA-style table — failure mode | mechanism | precedent (id) | how we'd detect it | severity | mitigation — followed by: the 3 highest-severity×likelihood modes, recommended guardrails (staged rollout, semantic config validation, tested rollback, detection additions), and what to verify in a drill before the change ships.
+
+## Cross-incident pattern analysis (your own corpus)
+
+Use when the user points at a directory of *their org's* postmortems ("what keeps biting us?").
+
+1. Inventory the directory; dispatch one reader agent per document (batch into slices of 5–8 if many) extracting structured fields per the corpus schema: trigger, root_cause_class[], contributing factors, detection source, time-to-mitigate, action items (+ whether verifiable), what-went-well.
+2. Cluster in the main context: recurring root-cause classes, repeat contributing factors, action items that recur across incidents (= previous items didn't remove the class), detection sources (how often did customers detect before monitoring?).
+3. Compare the org's distribution against the public corpus (`pm.py stats`) — over-represented classes are the systemic signal.
+4. Output: systemic-risk report — top recurring patterns with per-incident citations, orphaned/recurring action items, detection-gap summary, and the 3 highest-leverage structural fixes.
+
+## Data contract (`data/postmortems.json` + `data/extra_incidents.json`)
+
+`categories[].entries[]`: `id` (stable slug, e.g. `cloudflare-3`), `org`, `url`, `summary`, `alive` + `http_status` (link health), `archived`/`wayback_url` (archive fallbacks), `root_cause_class[]`, `trigger`, `blast_radius[]`, `lesson`, `suggested_category` (proposed sub-bucket for uncategorized). Top-level `canonical_patterns` maps category → recurring mechanisms with entry ids. `extra_incidents.json` holds additional corpora (currently AWS Post-Event Summaries) in the same shape; `pm.py` merges it into every search and `refresh` never touches it.
 
 ## Common mistakes
 

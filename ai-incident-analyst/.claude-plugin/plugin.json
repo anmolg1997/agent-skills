@@ -1,0 +1,8 @@
+{
+  "name": "ai-incident-analyst",
+  "description": "AI/LLM/agent failure analysis: curated incident corpus, 12-class failure vocabulary, agentic pre-mortem and design review",
+  "version": "1.0.0",
+  "author": {
+    "name": "anmolg1997"
+  }
+}
