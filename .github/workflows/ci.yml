@@ -1,0 +1,72 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate all JSON
+        run: |
+          python3 - <<'PY'
+          import json, pathlib, sys
+          bad = []
+          for p in pathlib.Path(".").rglob("*.json"):
+              if ".git" in p.parts:
+                  continue
+              try:
+                  json.loads(p.read_text(encoding="utf-8"))
+              except Exception as e:
+                  bad.append(f"{p}: {e}")
+          if bad:
+              print("\n".join(bad)); sys.exit(1)
+          print("all JSON valid")
+          PY
+
+      - name: Corpora load
+        run: |
+          python3 postmortem-analyst/scripts/pm.py stats
+          python3 ai-incident-analyst/scripts/ai.py classes
+
+      - name: Smoke search
+        run: |
+          python3 postmortem-analyst/scripts/pm.py search dns --limit 1
+          python3 ai-incident-analyst/scripts/ai.py search injection --limit 1
+
+      - name: Scripts compile
+        run: |
+          python3 -m py_compile postmortem-analyst/scripts/pm.py ai-incident-analyst/scripts/ai.py
+
+      - name: Plugin manifests valid
+        run: |
+          python3 - <<'PY'
+          import json, pathlib, sys
+          mp = json.loads(pathlib.Path(".claude-plugin/marketplace.json").read_text())
+          assert mp.get("name") and isinstance(mp.get("plugins"), list), "marketplace.json missing name/plugins"
+          for plug in mp["plugins"]:
+              src = pathlib.Path(plug["source"])
+              manifest = src / ".claude-plugin" / "plugin.json"
+              assert manifest.exists(), f"missing {manifest}"
+              j = json.loads(manifest.read_text())
+              assert j.get("name") == plug["name"], f"name mismatch in {manifest}"
+              assert (src / "SKILL.md").exists(), f"missing SKILL.md in {src}"
+          print(f"{len(mp['plugins'])} plugins OK")
+          PY
+
+      - name: No em dashes
+        run: |
+          matches=$(grep -rlP "\x{2014}" --include='*.md' --include='*.json' --include='*.py' . || true)
+          if [ -n "$matches" ]; then
+            echo "Em dashes found in:"; echo "$matches"; exit 1
+          fi
+          echo "no em dashes"

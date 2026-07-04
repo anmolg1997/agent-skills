@@ -1,0 +1,58 @@
+name: Add an incident
+description: Propose a real, documented failure to add to the corpus
+title: "[incident] <org>: <one-line summary>"
+labels: ["incident", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for growing the corpus. Incidents need a real source and a transferable lesson, not a news headline. See CONTRIBUTING.md for the schema.
+  - type: dropdown
+    id: corpus
+    attributes:
+      label: Which corpus
+      options:
+        - Infrastructure / SRE (postmortem-analyst)
+        - AI / LLM / agent (ai-incident-analyst)
+    validations:
+      required: true
+  - type: input
+    id: org
+    attributes:
+      label: Organization
+      placeholder: e.g. Cloudflare
+    validations:
+      required: true
+  - type: input
+    id: date
+    attributes:
+      label: Date of the incident
+      placeholder: e.g. 2025-11-18
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source URL
+      description: A first-party postmortem is best. Note if only press coverage exists.
+    validations:
+      required: true
+  - type: textarea
+    id: mechanism
+    attributes:
+      label: What actually failed
+      description: The mechanism chain, not just the outcome.
+    validations:
+      required: true
+  - type: input
+    id: lesson
+    attributes:
+      label: Transferable lesson
+      description: One sentence another team could act on.
+    validations:
+      required: true
+  - type: input
+    id: tags
+    attributes:
+      label: Suggested failure class(es)
+      description: From the controlled vocabulary (references/taxonomy.md or references/failure-classes.md).

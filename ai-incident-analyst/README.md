@@ -14,14 +14,14 @@ Sibling skill: [postmortem-analyst](../postmortem-analyst/) covers classic infra
 
 ## Install
 
-Via the [agent-skills](https://github.com/anmolg1997/agent-skills) collection:
+Via the [prepostmortem-skills](https://github.com/anmolg1997/prepostmortem-skills) collection:
 
 ```bash
-git clone https://github.com/anmolg1997/agent-skills ~/agent-skills
-ln -s ~/agent-skills/ai-incident-analyst ~/.claude/skills/ai-incident-analyst
+git clone https://github.com/anmolg1997/prepostmortem-skills ~/prepostmortem-skills
+ln -s ~/prepostmortem-skills/ai-incident-analyst ~/.claude/skills/ai-incident-analyst
 ```
 
-Or as a plugin: `/plugin marketplace add anmolg1997/agent-skills` then `/plugin install ai-incident-analyst@agent-skills`.
+Or as a plugin: `/plugin marketplace add anmolg1997/prepostmortem-skills` then `/plugin install ai-incident-analyst@prepostmortem-skills`.
 
 ## Direct CLI usage
 
