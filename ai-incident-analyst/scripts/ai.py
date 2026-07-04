@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""ai.py — CLI over the curated agentic-AI incident corpus.
+"""ai.py, CLI over the curated agentic-AI incident corpus.
 
 Subcommands:
   search   keyword/class search over the corpus

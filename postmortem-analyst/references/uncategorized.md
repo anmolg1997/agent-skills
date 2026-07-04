@@ -1,22 +1,22 @@
-# Uncategorized — 134 postmortems
+# Uncategorized, 134 postmortems
 
 ## Canonical patterns
 
-- **Latent bug triggered by first-time conditions** — A defect lies dormant for months until an unprecedented condition (scale threshold, rare packet signature, elapsed time, dependency loss) activates it, often simultaneously across a homogeneous fleet. Staging never reproduced the trigger because it lacked production's scale or soak time. (`amazon-11`, `amazon-17`, `amazon-18`, `appnexus`, `at-t`, `ccp-games-3`, `amazon-14`)
-- **Retry storm / thundering herd cascade** — A transient failure or recovery event unleashes synchronized reconnects and retries that overload a shared component (queue, database, network layer, lock service), making the overload self-sustaining and turning a blip into an hours-long outage. (`amazon-13`, `amazon-15`, `discord`, `circleci-5`, `bbc-online`, `duo`, `amazon-19`)
-- **Operator action with over-broad blast radius** — A human runs a legitimate command or script whose scope is wider than intended — a typo'd argument, wrong ID list, or maintenance job pointed at production — and tooling lacks guardrails (rate limits, soft delete, minimum-capacity floors) to contain it. (`amazon-8`, `amazon-10`, `amazon-12`, `atlassian`)
-- **Upgrade or auto-update silently changes behavior** — A routine dependency, OS, or platform upgrade changes defaults or creates version skew (JVM pool sizing, RabbitMQ ack timeout, kube-proxy iptables format, wiped network rules), and the change is undocumented or mis-documented, so it manifests only in production. (`circleci-8`, `circleci-9`, `circleci-10`, `datadog-2`, `dropbox`, `ccp-games-2`)
-- **Credential exposure and supply-chain compromise** — Secrets living where they should not (source repos, forgotten hosts, vendor databases) or unverified third-party artifacts give attackers a path in; the breach surface is an asset or vendor outside the primary security perimeter. (`bitly`, `browserstack`, `circleci-6`, `circleci-7`, `bintray`)
-- **Operator error on production data/fleets** — Fat-fingered or mis-scoped manual actions (wrong host, missing flag, wrong directory, wrong filesystem) during maintenance or incident response destroy or disable production, amplified by lax tooling validation and untested backups. (`gitlab`, `gitlab-2`, `joyent-2`, `mailgun`, `heroku-4`)
-- **Latent bug armed by config/policy data** — Code ships with a dormant defect that QA never exercises; a later, individually valid configuration or policy change becomes the trigger, often replicating globally faster than any rollback. (`fastly`, `google-20`, `github-16`, `heroku-5`)
-- **Credential and supply-chain compromise** — Leaked or stolen tokens and account credentials (npm, GitHub org, Jenkins, OAuth integrations) give attackers publish or push rights, turning one credential into an ecosystem-wide attack. (`eslint`, `gentoo`, `homebrew`, `heroku-7`)
-- **Database maintenance debt and hidden limits** — Known-but-deferred database ceilings — XID/ID wraparound, 32-bit id overflow, memory working sets, managed-service size caps — eventually arrive on their own schedule and fail catastrophically rather than gracefully. (`mandrill`, `joyent`, `etsy-2`, `instapaper`, `foursquare`)
-- **Upstream dependency cascade and recovery-induced storms** — Third-party or shared-cloud failures propagate through transitive dependencies, and the recovery phase itself (cold caches, client retries, thundering-herd restarts) triggers a second, often longer outage. (`incident-io-6`, `launchdarkly-2`, `github-18`, `google-20`, `heroku-6`)
-- **Retry/reconnect storms turn a blip into a cascading outage —** — Retry/reconnect storms turn a blip into a cascading outage — clients without backoff or admission control amplify the initial failure (`slack`, `slack-2`, `spotify`, `square`, `twilio`, `stackdriver`)
-- **Observability that depends on the failing system blinds resp** — Observability that depends on the failing system blinds responders and multiplies time-to-recover (`roblox`, `slack-2`, `north-american-electric-power-system`, `yeller`)
-- **Redundancy defeated by hidden shared coupling — 'independent** — Redundancy defeated by hidden shared coupling — 'independent' paths share a peering point, cluster, or vendor (`pagerduty-2`, `pagerduty-3`, `salesforce`, `zerodha-2`, `roblox`)
-- **Slow-burning resource/limit exhaustion (integer keys, Postgr** — Slow-burning resource/limit exhaustion (integer keys, Postgres XIDs, disk from unbounded logs, memory leaks) with a computable failure date nobody monitored (`strava`, `sentry-2`, `tarsnap`, `skyliner`, `platform-sh`)
-- **Routine manual operations on production without guardrails —** — Routine manual operations on production without guardrails — a repetitive task or ad-hoc DB op done wrong once takes everything down (`stripe`, `trivago`, `reddit`, `salesforce-2`)
+- **Latent bug triggered by first-time conditions**: A defect lies dormant for months until an unprecedented condition (scale threshold, rare packet signature, elapsed time, dependency loss) activates it, often simultaneously across a homogeneous fleet. Staging never reproduced the trigger because it lacked production's scale or soak time. (`amazon-11`, `amazon-17`, `amazon-18`, `appnexus`, `at-t`, `ccp-games-3`, `amazon-14`)
+- **Retry storm / thundering herd cascade**: A transient failure or recovery event unleashes synchronized reconnects and retries that overload a shared component (queue, database, network layer, lock service), making the overload self-sustaining and turning a blip into an hours-long outage. (`amazon-13`, `amazon-15`, `discord`, `circleci-5`, `bbc-online`, `duo`, `amazon-19`)
+- **Operator action with over-broad blast radius**: A human runs a legitimate command or script whose scope is wider than intended, a typo'd argument, wrong ID list, or maintenance job pointed at production, and tooling lacks guardrails (rate limits, soft delete, minimum-capacity floors) to contain it. (`amazon-8`, `amazon-10`, `amazon-12`, `atlassian`)
+- **Upgrade or auto-update silently changes behavior**: A routine dependency, OS, or platform upgrade changes defaults or creates version skew (JVM pool sizing, RabbitMQ ack timeout, kube-proxy iptables format, wiped network rules), and the change is undocumented or mis-documented, so it manifests only in production. (`circleci-8`, `circleci-9`, `circleci-10`, `datadog-2`, `dropbox`, `ccp-games-2`)
+- **Credential exposure and supply-chain compromise**: Secrets living where they should not (source repos, forgotten hosts, vendor databases) or unverified third-party artifacts give attackers a path in; the breach surface is an asset or vendor outside the primary security perimeter. (`bitly`, `browserstack`, `circleci-6`, `circleci-7`, `bintray`)
+- **Operator error on production data/fleets**: Fat-fingered or mis-scoped manual actions (wrong host, missing flag, wrong directory, wrong filesystem) during maintenance or incident response destroy or disable production, amplified by lax tooling validation and untested backups. (`gitlab`, `gitlab-2`, `joyent-2`, `mailgun`, `heroku-4`)
+- **Latent bug armed by config/policy data**: Code ships with a dormant defect that QA never exercises; a later, individually valid configuration or policy change becomes the trigger, often replicating globally faster than any rollback. (`fastly`, `google-20`, `github-16`, `heroku-5`)
+- **Credential and supply-chain compromise**: Leaked or stolen tokens and account credentials (npm, GitHub org, Jenkins, OAuth integrations) give attackers publish or push rights, turning one credential into an ecosystem-wide attack. (`eslint`, `gentoo`, `homebrew`, `heroku-7`)
+- **Database maintenance debt and hidden limits**: Known-but-deferred database ceilings, XID/ID wraparound, 32-bit id overflow, memory working sets, managed-service size caps, eventually arrive on their own schedule and fail catastrophically rather than gracefully. (`mandrill`, `joyent`, `etsy-2`, `instapaper`, `foursquare`)
+- **Upstream dependency cascade and recovery-induced storms**: Third-party or shared-cloud failures propagate through transitive dependencies, and the recovery phase itself (cold caches, client retries, thundering-herd restarts) triggers a second, often longer outage. (`incident-io-6`, `launchdarkly-2`, `github-18`, `google-20`, `heroku-6`)
+- **Retry/reconnect storms turn a blip into a cascading outage -**: Retry/reconnect storms turn a blip into a cascading outage, clients without backoff or admission control amplify the initial failure (`slack`, `slack-2`, `spotify`, `square`, `twilio`, `stackdriver`)
+- **Observability that depends on the failing system blinds resp**: Observability that depends on the failing system blinds responders and multiplies time-to-recover (`roblox`, `slack-2`, `north-american-electric-power-system`, `yeller`)
+- **Redundancy defeated by hidden shared coupling, 'independent**: Redundancy defeated by hidden shared coupling, 'independent' paths share a peering point, cluster, or vendor (`pagerduty-2`, `pagerduty-3`, `salesforce`, `zerodha-2`, `roblox`)
+- **Slow-burning resource/limit exhaustion (integer keys, Postgr**: Slow-burning resource/limit exhaustion (integer keys, Postgres XIDs, disk from unbounded logs, memory leaks) with a computable failure date nobody monitored (`strava`, `sentry-2`, `tarsnap`, `skyliner`, `platform-sh`)
+- **Routine manual operations on production without guardrails -**: Routine manual operations on production without guardrails, a repetitive task or ad-hoc DB op done wrong once takes everything down (`stripe`, `trivago`, `reddit`, `salesforce-2`)
 
 ## Entries
 
@@ -691,7 +691,7 @@ Fetch any entry's full text: `python3 scripts/pm.py fetch <id>`
 ### Slack (`slack-2`)
 - tags: network,capacity-overload,cascading-failure | blast: global-outage
 - Network saturation in AWS's traffic gateways caused packet loss. An attempt to scale up caused more issues.
-- **Lesson:** Provider network components have their own scaling lag, and losing your dashboards in the same event multiplies recovery time — keep observability off the shared failure path.
+- **Lesson:** Provider network components have their own scaling lag, and losing your dashboards in the same event multiplies recovery time, keep observability off the shared failure path.
 - <https://slack.engineering/slacks-outage-on-january-4th-2021/>
 
 ### Slack (`slack-3`)
@@ -757,7 +757,7 @@ Fetch any entry's full text: `python3 scripts/pm.py fetch <id>`
 ### Sweden (`sweden`)
 - tags: process-gap,human-operational-error | blast: safety-incident
 - Use of different rulers by builders caused the _Vasa_ to be more heavily built on its port side and the ship's designer, not having built a ship with two gun decks before, overbuilt the upper decks, leading to a design that was top heavy. Twenty minutes into its maiden voyage in 1628, the ship heeled to port and sank.
-- **Lesson:** Unify measurement standards and demand independent design review when scaling beyond anything previously built — a 400-year-old units lesson that Mars Climate Orbiter repeated.
+- **Lesson:** Unify measurement standards and demand independent design review when scaling beyond anything previously built, a 400-year-old units lesson that Mars Climate Orbiter repeated.
 - <https://www.pri.org/stories/2012-02-23/new-clues-emerge-centuries-old-swedish-shipwreck>
 
 ### Tarsnap (`tarsnap`)
@@ -799,7 +799,7 @@ Fetch any entry's full text: `python3 scripts/pm.py fetch <id>`
 ### Valve (`valve-2`)
 - tags: software-bug,process-gap | blast: data-loss
 - Steam's desktop client deleted all local files and directories. The thing I find most interesting about this is that, after this blew up on social media, there were widespread reports that this was reported to Valve months earlier. But Valve doesn't triage most bugs, resulting in an extremely long time-to-mitigate, despite having multiple bug reports on this issue.
-- **Lesson:** Guard destructive shell operations against unset variables, and triage inbound bug reports — time-to-mitigate is a process property, not a technical one.
+- **Lesson:** Guard destructive shell operations against unset variables, and triage inbound bug reports, time-to-mitigate is a process property, not a technical one.
 - <https://github.com/valvesoftware/steam-for-linux/issues/3671>
 
 ### Xubuntu (`xubuntu`)

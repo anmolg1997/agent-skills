@@ -165,7 +165,7 @@
           "org": "Amazon",
           "url": "https://aws.amazon.com/message/41926/",
           "archived": false,
-          "summary": "[2017-02-28 | Amazon S3 (US-EAST-1)] An operator debugging S3 billing ran an established capacity-removal playbook with a mistyped parameter, removing far more index and placement subsystem servers than intended; the tool allowed too much capacity to be removed too quickly. Both subsystems required full restarts — untested at that scale in years — leaving S3 APIs down in US-EAST-1 for about 4.3 hours and breaking dependents such as new EC2 launches, EBS snapshots, and Lambda; even the AWS status page depended on S3. No data was lost.",
+          "summary": "[2017-02-28 | Amazon S3 (US-EAST-1)] An operator debugging S3 billing ran an established capacity-removal playbook with a mistyped parameter, removing far more index and placement subsystem servers than intended; the tool allowed too much capacity to be removed too quickly. Both subsystems required full restarts - untested at that scale in years - leaving S3 APIs down in US-EAST-1 for about 4.3 hours and breaking dependents such as new EC2 launches, EBS snapshots, and Lambda; even the AWS status page depended on S3. No data was lost.",
           "alive": true,
           "http_status": "200",
           "root_cause_class": [
@@ -215,7 +215,7 @@
             "regional-outage"
           ],
           "trigger": "network blip caused synchronized membership renewals against an under-provisioned metadata service",
-          "lesson": "Watch how feature adoption grows internal payloads toward hard timeouts — the margin erodes silently until a routine blip synchronizes the fleet."
+          "lesson": "Watch how feature adoption grows internal payloads toward hard timeouts - the margin erodes silently until a routine blip synchronizes the fleet."
         },
         {
           "id": "aws-pes-2014-08-eu-west-power",
@@ -254,7 +254,7 @@
             "regional-outage"
           ],
           "trigger": "lock-service load spike made healthy nodes self-evict on handshake timeout",
-          "lesson": "Aggressive self-eviction on coordination latency turns a partial failure into total loss — back off when many peers fail simultaneously."
+          "lesson": "Aggressive self-eviction on coordination latency turns a partial failure into total loss - back off when many peers fail simultaneously."
         },
         {
           "id": "aws-pes-2013-12-sa-east-1",
@@ -274,7 +274,7 @@
             "prolonged-recovery"
           ],
           "trigger": "substation fault plus multiple generator failures during cutover",
-          "lesson": "Recovery actions are their own risk window — a hurried manual network change during an outage extended the blast radius to the healthy zone."
+          "lesson": "Recovery actions are their own risk window - a hurried manual network change during an outage extended the blast radius to the healthy zone."
         },
         {
           "id": "aws-pes-2012-12-elb-us-east",
@@ -294,7 +294,7 @@
             "prolonged-recovery"
           ],
           "trigger": "maintenance process run against production state data",
-          "lesson": "Gate mutating access to production control-plane data behind change management — a workflow that runs 'somewhere' will eventually run on prod."
+          "lesson": "Gate mutating access to production control-plane data behind change management - a workflow that runs 'somewhere' will eventually run on prod."
         },
         {
           "id": "aws-pes-2012-10-us-east-ebs",
@@ -313,14 +313,14 @@
             "partial-degradation"
           ],
           "trigger": "failed internal DNS propagation exposed a memory leak in a monitoring agent",
-          "lesson": "Monitoring agents need the same resource limits and health checks as the systems they watch — a leak in an 'auxiliary' process took down the fleet."
+          "lesson": "Monitoring agents need the same resource limits and health checks as the systems they watch - a leak in an 'auxiliary' process took down the fleet."
         },
         {
           "id": "aws-pes-2012-06-us-east-storm",
           "org": "Amazon",
           "url": "https://aws.amazon.com/message/67457/",
           "archived": false,
-          "summary": "[2012-06-29 | Amazon EC2/EBS/ELB and control plane (US-East)] A derecho storm's voltage spike hit two datacenters in one Availability Zone; one cut over to generators cleanly but the other's generators failed to hold stable voltage, so servers rode UPS until depletion, cutting power to about 7% of the zone's instances for ~4 hours. The zone failure cascaded into the regional control plane — the primary datastore lost power and failover did not engage automatically, blocking create/modify APIs region-wide for about an hour — and ELB recovery bugs prolonged customer impact. EBS volumes required consistency checks but no permanent loss was reported.",
+          "summary": "[2012-06-29 | Amazon EC2/EBS/ELB and control plane (US-East)] A derecho storm's voltage spike hit two datacenters in one Availability Zone; one cut over to generators cleanly but the other's generators failed to hold stable voltage, so servers rode UPS until depletion, cutting power to about 7% of the zone's instances for ~4 hours. The zone failure cascaded into the regional control plane - the primary datastore lost power and failover did not engage automatically, blocking create/modify APIs region-wide for about an hour - and ELB recovery bugs prolonged customer impact. EBS volumes required consistency checks but no permanent loss was reported.",
           "alive": true,
           "http_status": "200",
           "root_cause_class": [
@@ -353,7 +353,7 @@
             "data-loss"
           ],
           "trigger": "traffic shifted onto low-capacity secondary network during router upgrade",
-          "lesson": "Recovery mechanisms must be capacity-aware and back off — replication that retries aggressively after a partition becomes the second, worse outage."
+          "lesson": "Recovery mechanisms must be capacity-aware and back off - replication that retries aggressively after a partition becomes the second, worse outage."
         }
       ]
     }

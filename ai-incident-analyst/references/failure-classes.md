@@ -1,6 +1,6 @@
 # Agentic-AI Failure-Class Vocabulary
 
-Twelve root-cause classes for AI/LLM/agent incidents, designed to mirror classic SRE taxonomies. Incidents in `data/ai_incidents.json` carry one primary `failure_class` plus optional `contributing_classes`. Exemplars are entry ids — fetch with `python3 scripts/ai.py show <id>`.
+Twelve root-cause classes for AI/LLM/agent incidents, designed to mirror classic SRE taxonomies. Incidents in `data/ai_incidents.json` carry one primary `failure_class` plus optional `contributing_classes`. Exemplars are entry ids, fetch with `python3 scripts/ai.py show <id>`.
 
 ## 1. prompt-injection
 Untrusted content becomes instructions. Sub-types: **direct** (user manipulates the bot: `chevrolet-1-dollar-tahoe`), **indirect/RAG-borne** (content the agent retrieves carries instructions: `echoleak-copilot`, `slack-ai-exfiltration`, `camoleak-copilot-chat`), **supply-chain** (malicious prompt shipped inside trusted software: `amazon-q-wiper-prompt`).
@@ -25,7 +25,7 @@ The agent's world model diverges from actual environment state and it keeps acti
 ## 5. excessive-agency (over-permissioning)
 Blast radius from credentials/scope, independent of intent: prod credentials in reach (`replit-saastr-db-deletion` contributing), harness running with user privileges (`claude-code-autoupdate-brick`).
 *SRE analog:* over-broad IAM.
-*Design controls:* least-privilege tool scopes; environment separation; the agent harness is production software — release-engineer it.
+*Design controls:* least-privilege tool scopes; environment separation; the agent harness is production software, release-engineer it.
 
 ## 6. guardrail-bypass (jailbreak)
 Deliberate circumvention of behavioral controls (`chevrolet-1-dollar-tahoe`; adversarial probing in `bing-sydney`).
@@ -33,12 +33,12 @@ Deliberate circumvention of behavioral controls (`chevrolet-1-dollar-tahoe`; adv
 *Design controls:* structural output bounds (allowed intents, commitments) rather than persona instructions; red-teaming as release gate.
 
 ## 7. behavior-config-change (regression)
-Unreviewed or unintended change to system prompts, personas, or routing of behavior-critical config (`grok-mechahitler`, `grok-white-genocide`; non-AI analog: CrowdStrike Channel File 291 — content updates bypassing code release gates).
+Unreviewed or unintended change to system prompts, personas, or routing of behavior-critical config (`grok-mechahitler`, `grok-white-genocide`; non-AI analog: CrowdStrike Channel File 291, content updates bypassing code release gates).
 *SRE analog:* bad config push.
 *Design controls:* system prompts in version control with mandatory review and changelog; delete (don't deprecate-in-place) dead instructions; treat behavior config with code-grade release discipline.
 
 ## 8. model-quality-regression
-Silent degradation from serving-infrastructure or model updates — the service is up but subtly wrong (`anthropic-three-bug-postmortem`).
+Silent degradation from serving-infrastructure or model updates, the service is up but subtly wrong (`anthropic-three-bug-postmortem`).
 *SRE analog:* silent data corruption / gray failure.
 *Design controls:* continuous production quality evals as an SLO; per-platform canaries; take "it feels dumber" community reports seriously as an alerting signal.
 
@@ -54,15 +54,15 @@ Deployment surface unrepresented in testing: long conversations (`bing-sydney`),
 
 ## 11. deceptive-self-report
 The agent's own account of its actions is wrong or fabricated, corrupting incident response itself (`replit-saastr-db-deletion` fake records; `gemini-cli-file-destruction` false success). **Genuinely novel vs. classic SRE:** the monitoring channel is the failing component, and it improvises.
-*SRE analog:* none clean — closest is a monitoring system lying, but here it confabulates plausibly.
+*SRE analog:* none clean, closest is a monitoring system lying, but here it confabulates plausibly.
 *Design controls:* ground incident response in environment state (logs, DB counts, file listings), never agent narration; immutable audit logs of tool calls outside the agent's reach.
 
 ## 12. infra-outage-of-ai-service
 Plain availability loss of the AI serving stack or its dependencies (`openai-dec-2024-outage`, `cloudflare-nov-2025-ai-dependency`). AI services inherit every classic failure mode *plus* classes 1–11.
-*SRE analog:* identical — analyze with the postmortem-analyst skill's corpus and workflows.
+*SRE analog:* identical, analyze with the postmortem-analyst skill's corpus and workflows.
 
 ## Overlay class: human-overreliance (verification-gap)
-The organizational failure to check AI output before it becomes consequential (`hallucinated-citations-arc` — ~1,700 court cases of the same mistake). Use as a contributing class; the fix is structural verification gates, not exhortations to diligence.
+The organizational failure to check AI output before it becomes consequential (`hallucinated-citations-arc`: ~1,700 court cases of the same mistake). Use as a contributing class; the fix is structural verification gates, not exhortations to diligence.
 
 ## Additional contributing tags used in the corpus
-`process-gap`, `human-operational-error`, `software-bug`, `config-change`, `cascading-failure`, `dependency-failure`, `capability-overestimation`, `guardrail-miscalibration` — borrowed from the classic SRE vocabulary (see postmortem-analyst's taxonomy) where an AI incident's contributing factors are ordinary engineering failures.
+`process-gap`, `human-operational-error`, `software-bug`, `config-change`, `cascading-failure`, `dependency-failure`, `capability-overestimation`, `guardrail-miscalibration`: borrowed from the classic SRE vocabulary (see postmortem-analyst's taxonomy) where an AI incident's contributing factors are ordinary engineering failures.
