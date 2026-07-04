@@ -1,6 +1,6 @@
 {
   "name": "postmortem-analyst",
-  "description": "Incident precedent, pre-mortems, and postmortem review over 261 tagged real-world postmortems (danluu corpus + AWS PES)",
+  "description": "Incident precedent, pre-mortems, and postmortem review over 261 tagged real-world postmortems",
   "version": "2.0.0",
   "author": {
     "name": "anmolg1997"

@@ -6,7 +6,7 @@ A growing collection of [Agent Skills](https://agentskills.io) for Claude Code a
 
 | Skill | What it's for |
 |---|---|
-| [postmortem-analyst](postmortem-analyst/) | Incident precedent & failure-pattern analysis over **261 tagged real-world postmortems** (danluu/post-mortems + AWS Post-Event Summaries), plus the analysis workflows incident tooling doesn't serve: pre-mortems/FMEA grounded in precedent, rubric-based postmortem review, methodology-driven postmortem writing, and cross-incident pattern mining over your own org's postmortems. |
+| [postmortem-analyst](postmortem-analyst/) | Incident precedent & failure-pattern analysis over **261 tagged real-world postmortems**, plus the analysis workflows incident tooling doesn't serve: pre-mortems/FMEA grounded in precedent, rubric-based postmortem review, methodology-driven postmortem writing, and cross-incident pattern mining over your own org's postmortems. |
 | [ai-incident-analyst](ai-incident-analyst/) | Failure analysis for **AI/LLM/agentic systems** over a curated corpus of canonical incidents (Replit's DB-deleting agent, Anthropic's silent-quality-degradation postmortem, EchoLeak zero-click injection, GPT-4o sycophancy rollback, …) with a 12-class failure vocabulary mirroring SRE taxonomies, agentic pre-mortem/design review (MAST + OWASP LLM Top-10), and AI-incident postmortem discipline. |
 
 The two skills cross-delegate: AI services inherit every classic infrastructure failure mode (postmortem-analyst's domain) plus the twelve AI-specific classes (ai-incident-analyst's domain).

@@ -7,7 +7,7 @@ description: Use when analyzing an incident or outage and wanting precedent, res
 
 ## Overview
 
-An agentic harness over **261 real-world incident postmortems**: the danluu/post-mortems corpus (243, Google, Cloudflare, AWS, GitHub, GitLab, Facebook, NASA, …) plus AWS Post-Event Summaries (18), parsed into tagged, link-health-checked indexes (`data/postmortems.json` + `data/extra_incidents.json`), with per-category references and a failure-mode taxonomy. Analysis runs **nested**: cheap index search first, then fan-out subagents that deep-read only the relevant postmortems, then synthesis. Never bulk-read the corpus into the main context. For AI/LLM/agent behavior failures, use the sibling **ai-incident-analyst** skill.
+An agentic harness over **261 real-world incident postmortems** (Google, Cloudflare, AWS, GitHub, GitLab, Facebook, NASA, and more), parsed into tagged, link-health-checked indexes (`data/postmortems.json` + `data/extra_incidents.json`) with per-category references and a failure-mode taxonomy. The seed incident list is drawn from the public danluu/post-mortems index plus AWS Post-Event Summaries; the tags, lessons, taxonomy, and tooling are original. Analysis runs **nested**: cheap index search first, then fan-out subagents that deep-read only the relevant postmortems, then synthesis. Never bulk-read the corpus into the main context. For AI/LLM/agent behavior failures, use the sibling **ai-incident-analyst** skill.
 
 ## Quick reference
 
