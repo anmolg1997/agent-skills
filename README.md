@@ -1,25 +1,46 @@
 # Agent Skills
 
-A growing collection of [Agent Skills](https://agentskills.io) for Claude Code and compatible agents. Each skill is a self-contained folder with a `SKILL.md` entry point, its own data, references, and scripts — no dependencies beyond Python 3 stdlib and standard CLI tools unless noted.
+A growing collection of [Agent Skills](https://agentskills.io) for Claude Code and compatible agents. **Each skill lives in its own repository** (own issues, stars, releases) and is included here as a git submodule — this repo is the central catalog and one-command installer.
 
 ## Skills
 
-| Skill | What it's for |
-|---|---|
-| [postmortem-analyst](postmortem-analyst/) | Incident precedent & failure-pattern analysis over 243 real-world postmortems (danluu/post-mortems), tagged and searchable, with nested agent fan-out workflows for deep dives, surveys, and postmortem review. |
+| Skill | Repo | What it's for |
+|---|---|---|
+| [postmortem-analyst](postmortem-analyst/) | [anmolg1997/postmortem-analyst](https://github.com/anmolg1997/postmortem-analyst) | Incident precedent & failure-pattern analysis over 243 real-world postmortems (danluu/post-mortems), tagged and searchable, with nested agent fan-out workflows for deep dives, surveys, and postmortem review. |
 
 ## Install
 
-Clone once, then symlink the skills you want into your agent's skills directory:
+Clone with submodules, then symlink the skills you want into your agent's skills directory:
 
 ```bash
-git clone https://github.com/anmolg1997/agent-skills ~/agent-skills
+git clone --recurse-submodules https://github.com/anmolg1997/agent-skills ~/agent-skills
 ln -s ~/agent-skills/postmortem-analyst ~/.claude/skills/postmortem-analyst
 ```
 
-Claude Code discovers each linked skill automatically. To update everything: `git -C ~/agent-skills pull`.
+Claude Code discovers each linked skill automatically.
 
-## Layout convention
+Want just one skill? Clone its repo directly:
+
+```bash
+git clone https://github.com/anmolg1997/postmortem-analyst ~/.claude/skills/postmortem-analyst
+```
+
+## Managing the collection
+
+```bash
+# Pull latest of every skill and record the new pins
+git -C ~/agent-skills submodule update --remote --merge
+git -C ~/agent-skills commit -am "Bump skill pins"
+
+# Add a new skill to the collection
+gh repo create <skill-name> --public --source <skill-folder> --push
+git submodule add https://github.com/anmolg1997/<skill-name>.git <skill-name>
+git commit -m "Add <skill-name>"
+```
+
+Each submodule is pinned to a specific commit, so the collection is always a known-good set; bumping pins is an explicit, reviewable change.
+
+## Layout convention (per skill repo)
 
 ```
 <skill-name>/
