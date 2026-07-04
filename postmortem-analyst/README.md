@@ -52,10 +52,11 @@ references/taxonomy.md   # controlled vocabularies + cross-category pattern cata
 scripts/pm.py            # search / show / fetch / stats / refresh
 ```
 
-## Our IP
+## References
 
-The analysis engine and everything that makes this useful are original work: the failure taxonomy and controlled vocabularies, every root-cause/blast-radius tag and transferable lesson, the 32 canonical failure patterns, the link-health and archive-fallback data, the tooling (`pm.py`), and all nested and methodology-driven workflows.
+Public work that helped bring this to life. Thanks to the people behind:
 
-## Data provenance
+1. [danluu/post-mortems](https://github.com/danluu/post-mortems) and the AWS Post-Event Summaries, for the incident record.
+2. The Google SRE Book, the Howie guide, Etsy's debriefing guide, Richard Cook, and Gary Klein, for postmortem and pre-mortem methodology.
 
-The seed incident list (which incidents, and the links to each original postmortem) is drawn from the public [danluu/post-mortems](https://github.com/danluu/post-mortems) index and expanded with the AWS Post-Event Summaries. Each entry links to its original postmortem, whose content belongs to its publisher.
+Each entry links to its original postmortem, whose content belongs to its publisher. The tags, lessons, taxonomy, canonical patterns, and tooling here are our own.
