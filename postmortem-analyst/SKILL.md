@@ -15,7 +15,7 @@ All commands run from this skill's directory (`cd ~/.claude/skills/postmortem-an
 
 | Task | Command |
 |---|---|
-| Find incidents by keyword | `python3 scripts/pm.py search dns cascading --limit 10` |
+| Find incidents by keyword | `python3 scripts/pm.py search dns cascading --limit 10` (multiple terms are AND-matched — if a query returns few hits, drop a term and retry before concluding "no precedent") |
 | Filter by tag | `python3 scripts/pm.py search --cause config-change --blast global-outage` |
 | Filter by org/category | `python3 scripts/pm.py search --org cloudflare` / `--category database` |
 | Full record for one entry | `python3 scripts/pm.py show gitlab` |
@@ -79,8 +79,8 @@ Use when the user has a design doc, migration plan, or risky PR and wants failur
 
 1. Read the plan; inventory what it touches (systems, data, traffic, config surfaces, rollback paths).
 2. Klein framing (see `references/methodology.md`): "It is six months later and this change caused a serious incident — write the postmortem headline." Generate 5–10 concrete failure narratives, not abstract risks.
-3. For each narrative, ground it in precedent: `pm.py search` for the same mechanism (config rollout, migration, failover, capacity). A pre-mortem entry with a real incident id ("this is exactly `circleci` — type change made rollback unsafe") carries weight an invented scenario doesn't. Drop narratives with neither precedent nor a concrete mechanism.
-4. Output an FMEA-style table — failure mode | mechanism | precedent (id) | how we'd detect it | severity | mitigation — followed by: the 3 highest-severity×likelihood modes, recommended guardrails (staged rollout, semantic config validation, tested rollback, detection additions), and what to verify in a drill before the change ships.
+3. For each narrative, ground it in precedent: `pm.py search` for the same mechanism (config rollout, migration, failover, capacity). A pre-mortem entry with a real incident id ("this is exactly `circleci` — type change made rollback unsafe") carries weight an invented scenario doesn't. Drop narratives with neither precedent nor a concrete mechanism. For this workflow, citing the corpus at the index/summary level is sufficient — you don't need to fetch full texts (that "Common mistakes" rule applies to deep technical claims in a finished postmortem, not to precedent-grounding a pre-mortem).
+4. Output an FMEA-style table — failure mode | mechanism | precedent (id) | how we'd detect it | severity (Critical/High/Med/Low) | likelihood (High/Med/Low) | mitigation — followed by: the 3 modes with the highest severity×likelihood, recommended guardrails (staged rollout, semantic config validation, tested rollback, detection additions), and what to verify in a drill before the change ships. Use the two ordinal scales exactly as given so rows are comparable.
 
 ## Cross-incident pattern analysis (your own corpus)
 

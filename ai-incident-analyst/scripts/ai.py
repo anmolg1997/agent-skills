@@ -29,7 +29,7 @@ def load():
 
 
 def blob(e):
-    return " ".join([e["org"], e["title"], e.get("mechanism", ""), e.get("lesson", ""),
+    return " ".join([e["id"], e["org"], e["title"], e.get("mechanism", ""), e.get("lesson", ""),
                      e["failure_class"], " ".join(e.get("contributing_classes", []))]).lower()
 
 

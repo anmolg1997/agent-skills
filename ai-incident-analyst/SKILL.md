@@ -15,7 +15,7 @@ All commands run from this skill's directory.
 
 | Task | Command |
 |---|---|
-| Find incidents by keyword | `python3 scripts/ai.py search injection exfiltration` |
+| Find incidents by keyword | `python3 scripts/ai.py search injection exfiltration` (multiple terms are AND-matched against id/title/mechanism/lesson/class — if a query returns few hits, drop a term and retry; prefer `--class` filters over guessing synonyms) |
 | Filter by failure class | `python3 scripts/ai.py search --class runaway-autonomy` |
 | Full record for one incident | `python3 scripts/ai.py show replit-saastr-db-deletion` |
 | Fetch source text | `python3 scripts/ai.py fetch <id> --out /tmp/inc.txt` (tries each URL, then Wayback) |
@@ -43,10 +43,10 @@ For incidents beyond the curated corpus, query AIID (see `references/databases.m
 Use when reviewing a planned or existing agent system (a design doc, a repo, a tool manifest). This is the skill's highest-value workflow.
 
 1. Inventory the system: model(s), tools and their permission scopes, credential reach, retrieval sources, output channels (links/images/commits/API calls), autonomy level (human gates? irreversible ops?), update/config paths for prompts and personas, eval coverage.
-2. Walk **all 12 failure classes** from `references/failure-classes.md` against the inventory. For each class: applicable? what's the concrete scenario here? which design control is present/absent? Cite corpus precedent for every risk you flag (this is what separates the review from generic advice).
+2. Walk **all 12 failure classes** from `references/failure-classes.md` against the inventory. For each class: applicable? what's the concrete scenario here? which design control is present/absent? Cite corpus precedent for every risk you flag (this is what separates the review from generic advice). If a real risk has no close corpus precedent (e.g. a domain-specific hazard), say so explicitly and query AIID (`references/databases.md`) for one rather than dropping the risk or forcing a weak analogy.
 3. For multi-agent designs, additionally run the MAST review checklist (`references/mast-taxonomy.md`).
 4. For security-audience deliverables, map findings to OWASP LLM Top-10 codes.
-5. Output: a risk table — failure class | concrete scenario | precedent (id) | severity | existing control | recommended guardrail — followed by the top-5 guardrails ranked by blast-radius reduction. The recurring big five: environment separation, human gates on irreversible operations, tool-result read-back verification, prompt-injection trust boundaries on retrieval and output channels, behavior-config change control (prompts in git + review).
+5. Output: a risk table — failure class | concrete scenario | precedent (id) | severity (Critical/High/Med/Low) | existing control | recommended guardrail — ranked by severity and **capped at the top 8–10 rows** (you assessed all 12 classes; surface the ones that matter). Follow with the top-5 guardrails ranked by blast-radius reduction. The recurring big five: environment separation, human gates on irreversible operations, tool-result read-back verification, prompt-injection trust boundaries on retrieval and output channels, behavior-config change control (prompts in git + review).
 
 ### AI-incident postmortem writing
 
