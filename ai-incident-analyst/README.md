@@ -40,6 +40,12 @@ python3 scripts/ai.py classes
 - *"Users say the model got dumber after our last deploy but availability metrics are green, where do we start?"*
 - *"Write the postmortem for yesterday's incident where the agent overwrote the config directory."*
 
-## Attribution
+## References
 
-Incident research compiled 2026-07-04 from first-party postmortems, court records, security disclosures, and press investigation; each entry links its canonical sources, whose content belongs to their publishers. AIID incident IDs reference the [AI Incident Database](https://incidentdatabase.ai). Failure vocabulary and workflows are original to this repo.
+Public work that helped bring this to life. Thanks to the people behind:
+
+1. First-party postmortems, court records, and security disclosures, for the incidents themselves.
+2. The [AI Incident Database](https://incidentdatabase.ai) and AVID, for cross-referencing and taxonomy ideas.
+3. Berkeley's MAST taxonomy and the OWASP LLM Top-10, for the agentic failure model.
+
+Each entry links its canonical sources, whose content belongs to their publishers. The failure vocabulary, tagging, and workflows here are our own.

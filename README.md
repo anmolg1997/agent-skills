@@ -114,6 +114,13 @@ Claude Code discovers each skill automatically. Update with `git -C ~/agent-skil
   scripts/          the search / show / fetch CLI the skill drives
 ```
 
-## Data provenance
+## References
 
-The infrastructure incident seed list (which incidents, and links to each original postmortem) is drawn from the public [danluu/post-mortems](https://github.com/danluu/post-mortems) index and expanded with the AWS Post-Event Summaries. The AI-incident corpus was compiled from first-party postmortems, court records, and security disclosures. Every original postmortem's content belongs to its publisher, and each entry links back to the source. The tags, lessons, failure taxonomies, canonical patterns, tooling, and workflows are original work.
+Public work that helped bring this to life. Thanks to the people behind:
+
+1. [danluu/post-mortems](https://github.com/danluu/post-mortems) and the AWS Post-Event Summaries, for the infrastructure incident record.
+2. The [AI Incident Database](https://incidentdatabase.ai), AVID, and public security disclosures, for the AI incident record.
+3. The Google SRE Book, the Howie guide, Etsy's debriefing guide, and Richard Cook, for postmortem methodology.
+4. Berkeley's MAST taxonomy and the OWASP LLM Top-10, for the agentic failure model.
+
+Each incident links to its original source, whose content belongs to its publisher. The tags, lessons, taxonomies, tooling, and workflows here are our own.
