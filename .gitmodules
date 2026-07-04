@@ -1,4 +1,0 @@
-[submodule "postmortem-analyst"]
-	path = postmortem-analyst
-	url = https://github.com/anmolg1997/postmortem-analyst.git
-	branch = main
